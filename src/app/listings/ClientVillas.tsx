@@ -43,7 +43,9 @@ export default function ClientVillas() {
   const [page, setPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
   const listingsPerPage = 12;
-  const [marketType, setMarketType] = useState<'offPlan' | 'secondary'>('offPlan');
+  // const [marketType, setMarketType] = useState<'offPlan' | 'secondary'>('offPlan');
+  const [marketType, setMarketType] = useState<'offPlan' | 'secondary' | undefined>();
+  const [listingType, setListingType] = useState<'SELL' | 'RENT'>();
 
 
   useEffect(() => {
@@ -58,7 +60,8 @@ export default function ClientVillas() {
             page,
             limit: listingsPerPage,
             search,
-            marketType
+            marketType,
+            listingType
           }),
         });
 
@@ -86,7 +89,7 @@ export default function ClientVillas() {
     };
 
     fetchListings();
-  }, [page, search,marketType]);
+  }, [page, search,marketType,listingType]);
 
   const totalPages = Math.ceil(totalCount / listingsPerPage);
 
@@ -124,76 +127,71 @@ export default function ClientVillas() {
         </div>
       </div>
 
-    {/* <div className='flex justify-between items-center max-w-7xl mx-auto px-4 py-8 flex-wrap gap-4  '>
-        
-      <div className=" border flex justify-between items-center max-w-7xl mx-auto px-4 py-15">
-            <div className="flex items-center gap-2 border border-gray-600 rounded px-3 py-2 w-full max-w-md bg-[#161616]">
-              <FiSearch />
-              <input
-                type="text"
-                placeholder="Search for a Property by Name"
-                className="focus:outline-none w-full text-[#bebebe] bg-[#161616]"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-              />
-            </div> */}
-        {/* <button className="bg-white text-black px-4 py-2 rounded ml-4 font-bold flex justify-center items-center gap-2">
-          Filter <CiFilter size={24} className="stroke-[1]" />
-        </button> */}
-        {/* <div className="mt-8 flex items-center bg-gradient-to-r from-zinc-700 to-zinc-800 rounded-full p-1">
-       
-          <button
-            className={`${marketType === "secondary" ? "bg-white text-black font-bold" : "text-white font-light"} px-6 py-2 rounded-full shadow-sm transition-all`}
-            onClick={() => setMarketType("secondary")}
-          >
-            Secondary Market
-          </button>
-             <button
-            className={`${marketType === "offPlan" ? "bg-white text-black font-bold" : "text-white font-light"} px-6 py-2 rounded-full shadow-sm transition-all`}
-            onClick={() => setMarketType("offPlan")}
-          >
-            Off-Plan
-          </button>
-        </div>
+
+<div className="max-w-7xl mx-auto px-4 py-8 w-full">
+  <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center sm:justify-between gap-4 w-full">
+    
+    {/* Search Bar */}
+    <div className="flex items-center gap-2 border border-gray-600 rounded-4xl px-3 py-2 w-full sm:flex-1 bg-[#161616]">
+      <FiSearch />
+      <input
+        type="text"
+        placeholder="Search for a Property by Name"
+        className="focus:outline-none w-full text-[#bebebe] bg-[#161616]"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+    </div>
+
+    {/* Toggles Container */}
+    <div className="flex flex-col sm:flex-row sm:flex-wrap sm:gap-4 gap-3 w-full sm:w-fit">
+
+      {/* Buy / Rent Toggle */}
+      {/* <div className="flex items-center bg-gradient-to-r from-zinc-700 to-zinc-800 rounded-full p-[2px] w-full sm:w-auto"> */}
+      <div className="flex items-center bg-gradient-to-r bg-[#161616] rounded-full p-[2px] w-full sm:w-auto">
+
+        <button
+          className={`${listingType === "SELL" ? "bg-white text-black font-semibold" : "text-gray-300 font-light"} text-sm px-4 py-1.5 sm:px-6 sm:py-2 rounded-full transition-all w-1/2 sm:w-auto border border-gray-500`}
+          onClick={() =>
+            setListingType(prev => (prev === "SELL" ? undefined : "SELL"))
+          }
+        >
+          Buy
+        </button>
+        <button
+          className={`${listingType === "RENT" ? "bg-white text-black font-semibold" : "text-gray-300 font-light"} text-sm px-4 py-1.5 sm:px-6 sm:py-2 rounded-full transition-all w-1/2 sm:w-auto border border-gray-500`}
+          onClick={() =>
+            setListingType(prev => (prev === "RENT" ? undefined : "RENT"))
+          }
+        >
+          Rent
+        </button>
       </div>
 
-      </div> */}
+      {/* Off-Plan / Secondary Toggle */}
+      <div className="flex items-center bg-[#161616] rounded-full p-[2px] w-full sm:w-auto">
+        <button
+          className={`${marketType === "offPlan" ? "bg-white text-black font-semibold" : "text-gray-300 font-light"} text-sm px-4 py-1.5 sm:px-6 sm:py-2 rounded-full transition-all w-1/2 sm:w-auto border border-gray-500`}
+          onClick={() =>
+            setMarketType(prev => (prev === "offPlan" ? undefined : "offPlan"))
+          }
+        >
+          Off-Plan
+        </button>
+        <button
+          className={`${marketType === "secondary" ? "bg-white text-black font-semibold" : "text-gray-300 font-light"} text-sm px-4 py-1.5 sm:px-6 sm:py-2 rounded-full transition-all w-1/2 sm:w-auto border border-gray-500`}
+          onClick={() =>
+            setMarketType(prev => (prev === "secondary" ? undefined : "secondary"))
+          }
+        >
+          Secondary
+        </button>
+      </div>
 
-      <div className="flex justify-between items-center max-w-7xl mx-auto px-4 py-8 flex-wrap gap-4">
-  {/* Search Bar */}
-  <div className="flex items-center gap-2 border border-gray-600 rounded px-3 py-2 w-full max-w-md bg-[#161616]">
-    <FiSearch />
-    <input
-      type="text"
-      placeholder="Search for a Property by Name"
-      className="focus:outline-none w-full text-[#bebebe] bg-[#161616]"
-      value={search}
-      onChange={(e) => setSearch(e.target.value)}
-    />
-  </div>
-
-  {/* Toggle Buttons */}
-  <div className="flex items-center bg-gradient-to-r from-zinc-700 to-zinc-800 rounded-full p-1">
-      <button
-      className={`${marketType === "offPlan" ? "bg-white text-black font-bold" : "text-white font-light"} px-6 py-2 rounded-full shadow-sm transition-all`}
-      onClick={() => setMarketType("offPlan")}
-    >
-      Off-Plan
-    </button>
-     <button
-      className={`${marketType === "secondary" ? "bg-white text-black font-bold" : "text-white font-light"} px-6 py-2 rounded-full shadow-sm transition-all`}
-      onClick={() => setMarketType("secondary")}
-    >
-      Secondary Market
-    </button>
-  
+    </div>
   </div>
 </div>
 
-
-    
-      {/* toggle button */}
-  
 
 
       {/* Listings */}
