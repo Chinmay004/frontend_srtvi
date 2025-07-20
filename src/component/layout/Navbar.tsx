@@ -129,7 +129,7 @@ const Navbar = () => {
           <Link href="/developers" onClick={handleCloseMenu} className="hover:text-[#e0b973]">
             Developers
           </Link>
-          <Link href="/new-projects" onClick={handleCloseMenu} className="hover:text-[#e0b973]">
+          <Link href="/new-project" onClick={handleCloseMenu} className="hover:text-[#e0b973]">
             New Projects
           </Link>
           <Link href="/about" onClick={handleCloseMenu} className="hover:text-[#e0b973]">
