@@ -89,7 +89,7 @@ const Navbar = () => {
       <Link href="/" className="flex items-center">
         <Image
           src="/Logo-srtvii.png"
-          alt="Sartawi Properties Logo"
+          alt="Sartawi Properties"
           className="w-36 sm:w-48 md:w-56 lg:w-60 xl:w-64 h-auto"
           width={230}
           height={85}
