@@ -12,6 +12,7 @@
     "@types/leaflet": "^1.9.19",
     "framer-motion": "^12.23.0",
     "leaflet": "^1.9.4",
+    "lodash.debounce": "^4.0.8",
     "next": "^15.3.4",
     "node": "^24.4.0",
     "react": "^19.0.0",
@@ -22,6 +23,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/lodash.debounce": "^4.0.9",
     "@types/node": "^20.19.7",
     "@types/react": "^19",
     "@types/react-dom": "^19",

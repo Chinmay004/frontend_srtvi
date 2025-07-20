@@ -98,7 +98,7 @@ export default function AboutPage() {
             </div>
           </div>
         </section>
-{/* <section className="py-20 px-6 max-w-5xl mx-auto">
+        {/* <section className="py-20 px-6 max-w-5xl mx-auto">
   <h2 className="text-4xl font-normal text-center mb-12">Our Founding Team</h2>
   <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 justify-items-center">
     {[
@@ -120,43 +120,42 @@ export default function AboutPage() {
   </div>
 </section> */}
 
-<section className="py-20 px-6 max-w-5xl mx-auto">
-  <h2 className="text-4xl font-bold text-center mb-12">Our Founding Team</h2>
-  <div className="space-y-16">
-    {[
-      {
-        name: 'Mohannad Younis',
-        img: '/brokers/team.jpg',
-        quote: `Our passion for real estate fuels our dedication to pushing boundaries and creating innovative solutions. By leveraging our advanced platform, we're committed to shaping Dubai's future and demonstrating that with the right values and work ethic, anything is achievable. Together, let's make this decade even more remarkable than the last.`,
-      },
-      {
-        name: 'Mohammed Younis',
-        img: '/brokers/team2.jpg',
-        quote: `Dubai's remarkable success story is a testament to its exceptional infrastructure and top-tier living standards. As a leader in real estate, Sartawi Properties is committed to driving this growth even further. With our advanced platform, we're poised to attract more residents and foreign investment, building on Dubai's reputation as a global city.`,
-      },
-    ].map((agent, idx) => (
-      <div
-        key={idx}
-        className={`flex flex-col md:flex-row ${
-          idx % 2 === 0 ? 'md:flex-row-reverse' : ''
-        } items-center gap-8`}
-      >
-        <div className="relative w-full md:w-1/2 h-72 rounded-lg overflow-hidden shadow-lg">
-          <Image
-            src={agent.img}
-            alt={agent.name}
-            fill
-            className="object-contain "
-          />
-        </div>
-        <div className="w-full md:w-1/2 text-left space-y-4">
-          <blockquote className="text-lg text-gray-300 leading-relaxed">{agent.quote}</blockquote>
-          <blockquote className="font-semibold text-xl text-white"> {agent.name}</blockquote>
-        </div>
-      </div>
-    ))}
-  </div>
-</section>
+        <section className="py-20 px-6 max-w-5xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-12">Our Founding Team</h2>
+          <div className="space-y-16">
+            {[
+              {
+                name: 'Mohannad Younis',
+                img: '/brokers/team.jpg',
+                quote: `Our passion for real estate fuels our dedication to pushing boundaries and creating innovative solutions. By leveraging our advanced platform, we're committed to shaping Dubai's future and demonstrating that with the right values and work ethic, anything is achievable. Together, let's make this decade even more remarkable than the last.`,
+              },
+              {
+                name: 'Mohammed Younis',
+                img: '/brokers/team2.jpg',
+                quote: `Dubai's remarkable success story is a testament to its exceptional infrastructure and top-tier living standards. As a leader in real estate, Sartawi Properties is committed to driving this growth even further. With our advanced platform, we're poised to attract more residents and foreign investment, building on Dubai's reputation as a global city.`,
+              },
+            ].map((agent, idx) => (
+              <div
+                key={idx}
+                className={`flex flex-col md:flex-row ${idx % 2 === 0 ? 'md:flex-row-reverse' : ''
+                  } items-center gap-8`}
+              >
+                <div className="relative w-full md:w-1/2 h-72 rounded-lg overflow-hidden shadow-lg">
+                  <Image
+                    src={agent.img}
+                    alt={agent.name}
+                    fill
+                    className="object-contain "
+                  />
+                </div>
+                <div className="w-full md:w-1/2 text-left space-y-4">
+                  <blockquote className="text-lg text-gray-300 leading-relaxed">{agent.quote}</blockquote>
+                  <blockquote className="font-semibold text-xl text-white"> {agent.name}</blockquote>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
 
 
         {/* Contact Section */}
@@ -216,9 +215,9 @@ export default function AboutPage() {
             </div>
           </div> */}
           <div className="relative z-10 flex items-center justify-center h-full px-4">
-        <ContactForm />
+            <ContactForm />
 
-</div>
+          </div>
 
         </section>
       </main>

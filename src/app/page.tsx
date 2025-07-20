@@ -85,7 +85,7 @@ export default function Home() {
 
         const data = await res.json();
 
-      const mappedListings = (data.data.list as RawAPIListing[]).map((item) => ({
+        const mappedListings = (data.data.list as RawAPIListing[]).map((item) => ({
           id: item.propertyId,
           title: item.title,
           description: item.description,
@@ -127,20 +127,20 @@ export default function Home() {
               Discover Your Dream Property <br /> with{" "}
               <span className="font-semibold ">Sartawi</span>
             </h1>
-         <div className="mt-8 flex items-center bg-gradient-to-r from-zinc-700 to-zinc-800 rounded-full p-1">
-            <button
-              className={`${selectedOption === "Buy" ? "bg-white text-black font-bold" : "text-white font-light"} px-6 py-2 rounded-full shadow-sm transition-all`}
-              onClick={() => setSelectedOption("Buy")}
-            >
-              Buy
-            </button>
-            <button
-              className={`${selectedOption === "Rent" ? "bg-white text-black font-bold" : "text-white font-light"} px-6 py-2 rounded-full shadow-sm transition-all`}
-              onClick={() => setSelectedOption("Rent")}
-            >
-              Rent
-            </button>
-          </div>
+            <div className="mt-8 flex items-center bg-gradient-to-r from-zinc-700 to-zinc-800 rounded-full p-1">
+              <button
+                className={`${selectedOption === "Buy" ? "bg-white text-black font-bold" : "text-white font-light"} px-6 py-2 rounded-full shadow-sm transition-all`}
+                onClick={() => setSelectedOption("Buy")}
+              >
+                Buy
+              </button>
+              <button
+                className={`${selectedOption === "Rent" ? "bg-white text-black font-bold" : "text-white font-light"} px-6 py-2 rounded-full shadow-sm transition-all`}
+                onClick={() => setSelectedOption("Rent")}
+              >
+                Rent
+              </button>
+            </div>
 
             <div className="mt-6 w-full max-w-xl">
               <div className="flex bg-[#696969] backdrop-blur-sm rounded-full overflow-hidden">
@@ -167,7 +167,7 @@ export default function Home() {
         </div>
       </div>
 
-            {/* <div className="h-52 bg-[#0f0f0f] overflow-hidden relative">
+      {/* <div className="h-52 bg-[#0f0f0f] overflow-hidden relative">
             <div className="absolute top-1/2 -translate-y-1/2 w-full">
               <div className="flex w-max animate-marquee gap-16">
                 {[...logos, ...logos].map((src, idx) => (
@@ -184,132 +184,207 @@ export default function Home() {
             </div>
           </div> */}
 
-          <div className="h-52 bg-[#0f0f0f] overflow-hidden relative">
-            <div className="absolute top-1/2 -translate-y-1/2 w-full">
-              <div className="flex w-max animate-marquee gap-16">
-                {[...logos, ...logos].map((item, idx) => (
-                  <div
-                    key={`${item.src}-${idx}`}
-                    className="relative h-72 w-72 cursor-pointer"
-                    onClick={() => {
-                      router.push(`/listings?search=${encodeURIComponent(item.name)}`);
-                    }}
-                  >
-                    <Image
-                      src={item.src}
-                      alt={item.name}
-                      fill
-                      className="object-contain"
-                    />
-                  </div>
-                ))}
+      <div className="h-52 bg-gradient-to-r from-black via-black to-[#222222] overflow-hidden relative">
+        <div className="absolute top-1/2 -translate-y-1/2 w-full">
+          <div className="flex w-max animate-marquee gap-16">
+            {[...logos, ...logos].map((item, idx) => (
+              <div
+                key={`${item.src}-${idx}`}
+                className="relative h-72 w-72 cursor-pointer"
+                onClick={() => {
+                  router.push(`/listings?search=${encodeURIComponent(item.name)}`);
+                }}
+              >
+                <Image
+                  src={item.src}
+                  alt={item.name}
+                  fill
+                  className="object-contain"
+                />
               </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <div className="bg-black text-white">
+        <div className="bg-gradient-to-r from-[#2c2c3c] via-black to-black text-white py-16 px-4 sm:px-10">
+          <h2 className="text-2xl sm:text-3xl font-semibold text-center mb-12">Our Services</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 max-w-5xl mx-auto">
+            {[
+              { icon: "/services/home.png", title: "Homes for Sale", desc: "Browse our extensive listings of homes for sale. From cozy cottages to luxurious mansions, we have it all." },
+              { icon: "/services/Build.png", title: "Property Management", desc: "Need help with your rental? Our team handles everything—tenants, maintenance, and more." },
+              { icon: "/services/hand.png", title: "Mortgage Services", desc: "We offer tailored mortgage solutions to help finance your dream home." },
+              { icon: "/services/money.png", title: "Home Valuation", desc: "Wondering what your home is worth? Get a free valuation from our expert team today." },
+            ].map((service, idx) => (
+              <div key={idx} className="flex items-start gap-4">
+                <div className="bg-[#2a2a2a] p-6 rounded-lg">
+                  <Image src={service.icon} alt="" className="w-8" width={32} height={32} />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold">{service.title}</h3>
+                  <p className="text-sm text-gray-300">{service.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+
+        {/* Achievements
+        <section className="bg-[#3e4470] text-black py-12 text-center w-full ">
+          <h2 className="text-3xl font-bold mb-8">What have we Achieved</h2>
+          <div className="flex flex-wrap justify-around gap-12 px-10 text-black">
+            <div>
+              <p className="text-sm">Total Properties</p>
+              <p className="text-3xl font-bold">1000+</p>
+            </div>
+            <div>
+              <p className="text-sm">Properties Sold</p>
+              <p className="text-3xl font-bold">100+</p>
+            </div>
+            <div>
+              <p className="text-sm">Total Clients</p>
+              <p className="text-3xl font-bold">60+</p>
+            </div>
+            <div>
+              <p className="text-sm">Total Locations</p>
+              <p className="text-3xl font-bold">25+</p>
             </div>
           </div>
+        </section> */}
+
+        <section className="bg-gradient-to-r from-black via-[#222222] to-black text-white py-12 text-center w-full">
+          <h2 className="text-3xl font-bold mb-8">What have we Achieved</h2>
+          <div className="flex flex-wrap justify-around gap-12 px-10">
+            <div>
+              <p className="text-sm">Total Properties</p>
+              <p className="text-3xl font-bold">1000+</p>
+            </div>
+            <div>
+              <p className="text-sm">Properties Sold</p>
+              <p className="text-3xl font-bold">100+</p>
+            </div>
+            <div>
+              <p className="text-sm">Total Clients</p>
+              <p className="text-3xl font-bold">60+</p>
+            </div>
+            <div>
+              <p className="text-sm">Total Locations</p>
+              <p className="text-3xl font-bold">25+</p>
+            </div>
+          </div>
+        </section>
 
 
+        {/* Our Real Estate Agents */}
 
-       <div className="bg-black text-white">
-         <div className="bg-gradient-to-r from-[#2c2c3c] via-black to-black text-white py-16 px-4 sm:px-10">
-           <h2 className="text-2xl sm:text-3xl font-semibold text-center mb-12">Our Services</h2>
-           <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 max-w-5xl mx-auto">
-             {[
-               { icon: "/services/home.png", title: "Homes for Sale", desc: "Browse our extensive listings of homes for sale. From cozy cottages to luxurious mansions, we have it all." },
-               { icon: "/services/Build.png", title: "Property Management", desc: "Need help with your rental? Our team handles everything—tenants, maintenance, and more." },
-               { icon: "/services/hand.png", title: "Mortgage Services", desc: "We offer tailored mortgage solutions to help finance your dream home." },
-               { icon: "/services/money.png", title: "Home Valuation", desc: "Wondering what your home is worth? Get a free valuation from our expert team today." },
-             ].map((service, idx) => (
-               <div key={idx} className="flex items-start gap-4">
-                 <div className="bg-[#2a2a2a] p-6 rounded-lg">
-                   <Image src={service.icon} alt="" className="w-8" width={32} height={32} />
-                 </div>
-                 <div>
-                   <h3 className="text-lg font-semibold">{service.title}</h3>
-                   <p className="text-sm text-gray-300">{service.desc}</p>
-                 </div>
-               </div>
-             ))}
-           </div>
-         </div>
-
-                {/* Our Real Estate Agents */}
-    
-         {/* Featured Properties */}
-         <section className="bg-[#0f0f0f] text-white py-10">
-           <div className="max-w-7xl mx-auto px-4">
-             <h2 className="text-4xl font-normal mb-6 text-center">Featured Properties</h2>
-             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-               {related.map((property) => (
-                 <Link
-                   key={property.id}
-                   href={`/listings/${property.id}`}
-                   className="bg-[#141414] p-3 border border-[#262626] rounded-xl block"
-                 >
-                   <div className="bg-[#141414] rounded-lg overflow-hidden">
-                     <div className="relative w-full h-48 rounded-xl overflow-hidden">
-                       <Image
-                         src={property.images[0] || "/fallback.jpg"}
-                         alt={property.title}
-                         fill
-                         className="object-cover"
-                       />
-                     </div>
-                     <div className="p-4">
-                       <h3 className="text-lg font-semibold mb-1 line-clamp-2 min-h-[3rem]">
-                         {property.title}
-                       </h3>
-                       <p className="text-sm text-gray-400 mb-2">
-                         {property.description.slice(0, 80)}...
-                         <span className="text-white underline cursor-pointer">Read More</span>
-                       </p>
-                       <div className="flex flex-wrap gap-2 text-xs mb-3">
+        {/* Featured Properties */}
+        <section className="bg-[#0f0f0f] text-white py-10">
+          <div className="max-w-7xl mx-auto px-4">
+            <h2 className="text-4xl font-normal mb-6 text-center">Featured Properties</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+              {related.map((property) => (
+                <Link
+                  key={property.id}
+                  href={`/listings/${property.id}`}
+                  className="bg-[#141414] p-3 border border-[#262626] rounded-xl block"
+                >
+                  <div className="bg-[#141414] rounded-lg overflow-hidden">
+                    <div className="relative w-full h-48 rounded-xl overflow-hidden">
+                      <Image
+                        src={property.images[0] || "/fallback.jpg"}
+                        alt={property.title}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="p-4">
+                      <h3 className="text-lg font-semibold mb-1 line-clamp-2 min-h-[3rem]">
+                        {property.title}
+                      </h3>
+                      <p className="text-sm text-gray-400 mb-2">
+                        {property.description.slice(0, 80)}...
+                        <span className="text-white underline cursor-pointer">Read More</span>
+                      </p>
+                      <div className="flex flex-wrap gap-2 text-xs mb-3">
                         <span className="bg-[#1a1a1a] px-2 py-1 rounded-xl border border-[#262626] flex items-center gap-1">
-                          <Image src="/building/Icon.png" alt="" className="h-4" width={16} height={16}/>
+                          <Image src="/building/Icon.png" alt="" className="h-4" width={16} height={16} />
                           {property.bedrooms > 0 ? `${property.bedrooms}-Bedroom` : "Bedroom"}
                         </span>
-                        
+
                         <span className="bg-[#1a1a1a] px-2 py-1 rounded-xl border border-[#262626] flex items-center gap-1">
-                          <Image src="/building/Icon1.png" alt="" className="h-4" width={16} height={16}/>
+                          <Image src="/building/Icon1.png" alt="" className="h-4" width={16} height={16} />
                           {property.bathrooms > 0 ? `${property.bathrooms}-Bathroom` : "Bathroom"}
                         </span>
-                        
+
                         <span className="bg-[#1a1a1a] px-2 py-1 rounded-xl border border-[#262626] flex items-center gap-1">
-                          <Image src="/building/Icon2.png" alt="" className="h-4" width={16} height={16}/>
+                          <Image src="/building/Icon2.png" alt="" className="h-4" width={16} height={16} />
                           {property.type}
                         </span>
                       </div>
 
-                       <p className="font-semibold mb-3 text-2xl pt-3">
-                         AED {property.price.toLocaleString()}
-                       </p>
-                       <button className="w-full py-2 bg-[#363636] hover:bg-[#464646] rounded text-sm">
-                         View Property Details
-                       </button>
-                     </div>
-                   </div>
-                 </Link>
-               ))}
-             </div>
-           <Link href="/listings">
-             <div className="flex justify-end mt-6 gap-3">
-               <button
-                 // onClick={() => setPage((p) => Math.max(p - 1, 1))}
-                 className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-700 hover:bg-gray-600"
-               >
-                 ←
-               </button>
-               <button
-                 // onClick={() => setPage((p) => p + 1)}
-                 className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-700 hover:bg-gray-600"
-               >
-                 →
-               </button>
-             </div>
-             </Link>
-           </div>
-         </section>
-       </div>
-       <Footer />
-     </div>
-   );
- }
+                      <p className="font-semibold mb-3 text-2xl pt-3">
+                        AED {property.price.toLocaleString()}
+                      </p>
+                      <button className="w-full py-2 bg-[#363636] hover:bg-[#464646] rounded text-sm">
+                        View Property Details
+                      </button>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            <Link href="/listings">
+              <div className="flex justify-end mt-6 gap-3">
+                <button
+                  // onClick={() => setPage((p) => Math.max(p - 1, 1))}
+                  className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-700 hover:bg-gray-600"
+                >
+                  ←
+                </button>
+                <button
+                  // onClick={() => setPage((p) => p + 1)}
+                  className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-700 hover:bg-gray-600"
+                >
+                  →
+                </button>
+              </div>
+            </Link>
+          </div>
+        </section>
+      </div>
+      {/* <a
+        href="https://wa.me/971529323341"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white p-3 rounded-full shadow-lg transition-all duration-300"
+        title="Chat with us on WhatsApp"
+      >
+        <Image src="/whatsapp-icon.svg" alt="WhatsApp" width={28} height={28} />
+      </a> */}
+
+      {/* version 2 */}
+      {/* <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end space-y-2 group">
+        <div className="bg-white text-black text-sm px-4 py-2 rounded-lg shadow-md max-w-[200px] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          👋 Chat with us on WhatsApp!
+        </div>
+
+        <a
+          href="https://wa.me/971529323341"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-green-500 hover:bg-green-600 text-white p-3 rounded-full shadow-lg transition-all duration-300"
+          title="Chat with us on WhatsApp"
+        >
+          <Image src="/whatsapp-icon.svg" alt="WhatsApp" width={28} height={28} />
+        </a>
+      </div> */}
+
+      <Footer />
+    </div>
+  );
+}
