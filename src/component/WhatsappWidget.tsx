@@ -466,7 +466,7 @@ const WhatsAppWidget = () => {
 
                     {/* Message Body */}
                     <div className="px-3 py-2 text-sm text-gray-800 leading-snug">
-                        <p>👋 Welcome! How can we help you?</p>
+                        <p>👋 Connect with us on Whatsapp!</p>
                     </div>
 
                     {/* Send Message Button */}
