@@ -732,7 +732,7 @@
 //version  past
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Navbar from "@/component/layout/Navbar";
@@ -756,7 +756,60 @@ export default function DevelopersPage() {
     const router = useRouter();
     const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes
 
-    const fetchDevelopers = async (search: string) => {
+    // const fetchDevelopers = async (search: string) => {
+    //     setLoading(true);
+    //     try {
+    //         const now = Date.now();
+
+    //         if (!search) {
+    //             const cachedData = sessionStorage.getItem("cachedDevelopers");
+    //             const lastFetched = sessionStorage.getItem("developersLastFetched");
+
+    //             const isCacheValid =
+    //                 cachedData &&
+    //                 lastFetched &&
+    //                 now - parseInt(lastFetched) < CACHE_DURATION;
+
+    //             if (isCacheValid) {
+    //                 const parsed = JSON.parse(cachedData!);
+    //                 const safeParsed = Array.isArray(parsed) ? parsed : [];
+    //                 setDevelopers(safeParsed);
+    //                 setLoading(false);
+    //                 return;
+    //             }
+    //         }
+
+    //         const res = await fetch("https://dataapi.pixxicrm.ae/pixxiapi/v1/developer/list", {
+    //             method: "POST",
+    //             headers: {
+    //                 "x-pixxi-token": "GwoU8j7WFPwaAUfCz7B6NAHFwMBaSLak",
+    //                 "Content-Type": "application/json",
+    //             },
+    //             body: JSON.stringify({
+    //                 name: search,
+    //                 page: 1,
+    //                 size: 10000,
+    //             }),
+    //         });
+
+    //         const data = await res.json();
+    //         const safeDevelopers = Array.isArray(data?.data?.list) ? data.data.list : [];
+    //         setDevelopers(safeDevelopers);
+    //         setLoading(false);
+
+    //         if (!search) {
+    //             sessionStorage.setItem("cachedDevelopers", JSON.stringify(safeDevelopers));
+    //             sessionStorage.setItem("developersLastFetched", now.toString());
+    //         }
+    //     } catch (error) {
+    //         console.error("Error fetching developers:", error);
+    //         setLoading(false);
+    //     }
+    // };
+
+
+
+    const fetchDevelopers = useCallback(async (search: string) => {
         setLoading(true);
         try {
             const now = Date.now();
@@ -805,11 +858,11 @@ export default function DevelopersPage() {
             console.error("Error fetching developers:", error);
             setLoading(false);
         }
-    };
+    }, []);
 
     useEffect(() => {
         fetchDevelopers("");
-    }, []);
+    }, [fetchDevelopers]);
 
     const debouncedSearch = debounce((value: string) => {
         setCurrentPage(1); // reset to first page on search
