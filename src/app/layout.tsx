@@ -24,6 +24,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/logo-sartawi.svg" sizes="any" />
+        {/* Optional for PNG */}
+        {/* <link rel="icon" type="image/png" href="/logo-sartawi.png" /> */}
+        <title>Sartawi Properties</title>
+        <meta name="description" content="Trust. Resilience. Ambition. Sartawi Properties." />
+      </head>
       <body className={`${urbanist.variable} antialiased`}>
         {children}
         <WhatsAppWidget />

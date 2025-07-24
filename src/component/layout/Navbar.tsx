@@ -112,8 +112,8 @@ const Navbar = () => {
         <Link href="/developers" className="text-white hover:text-[#e0b973]">
           Developers
         </Link>
-        <Link href="/new-project" className="text-white hover:text-[#e0b973]">
-          New Projects
+        <Link href="/featured-properties" className="text-white hover:text-[#e0b973]">
+          Featured Properties
         </Link>
         <Link href="/about" className="text-white hover:text-[#e0b973]">
           About Us

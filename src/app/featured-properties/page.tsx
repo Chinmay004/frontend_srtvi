@@ -108,8 +108,8 @@ export default function SecondaryPropertiesPage() {
                 />
                 <div className="absolute inset-0 bg-black/70 z-10 flex flex-col justify-center items-center text-center px-4">
                     <h1 className="text-4xl sm:text-5xl font-bold mb-2">
-                        New{" "}
-                        <span className="text-[#e0b973]">Projects</span>
+                        Featured{" "}
+                        <span className="text-[#e0b973]">Properties</span>
                     </h1>
                     <p className="max-w-xl text-gray-300 text-sm">
                         Explore exclusive resale properties in Dubai.

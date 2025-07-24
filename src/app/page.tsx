@@ -207,6 +207,162 @@ export default function Home() {
         </div>
       </div>
 
+      <section className="bg-black text-white px-6 py-20 sm:px-10 lg:px-28">
+        <div className="max-w-5xl mx-auto text-center space-y-16">
+          <div>
+            <h2 className="text-4xl font-light tracking-widest text-gray-400 uppercase mb-6">Who Are We</h2>
+            <p className="text-lg leading-relaxed text-gray-300">
+              <span className="italic text-white font-medium">“From a Village of Hope to a City of Dreams”</span><br /><br />
+              Sartawi Properties was born from the dreams of two brothers from a small village in Palestine—a name that stands for <strong>TRUST, RESILIENCE and AMBITION</strong>.
+              With over two decades of combined experience, they have witnessed the city's transformation firsthand and developed a unique understanding of its market dynamics.
+              They transformed their local expertise into a global real estate company, helping international investors navigate the city’s dynamic and booming property market.
+            </p>
+          </div>
+
+
+          <div>
+            <h2 className="text-4xl font-light tracking-widest text-gray-400 uppercase mb-6">Our Purpose</h2>
+            <p className="text-lg leading-relaxed text-gray-300">
+              At Sartawi Properties, our purpose goes beyond transactions—we help shape futures. As trusted real estate brokers, we guide international investors through Dubai’s dynamic property market with transparency, tailored support, and reliable results. Our mission is to build lasting relationships by offering personalized solutions that meet each client’s unique goals.
+              <br /><br />
+              With a profound understanding of the local market and a global perspective, we are well-equipped to navigate the complexities of Dubai’s real estate landscape and deliver outstanding results. We aim to create a global community of investors built on integrity, expertise, and long-term value while our experts navigate the complexities of Dubai’s real estate landscape and deliver outstanding results.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* black and grey glass  */}
+      {/* <section
+        className="relative bg-fixed bg-center bg-cover text-white py-32 px-6 bg-black"
+        style={{ backgroundImage: "url('/dubai-skyline.jpg')" }}
+      >
+        {/* <div className="bg-white p-10 rounded-xl max-w-5xl mx-auto text-center space-y-12"> */}
+      {/* <div className="bg-gradient-to-br from-black via-[#1a1a1a] to-[#2d2d2d] p-10 rounded-xl max-w-5xl mx-auto text-center space-y-12 text-white shadow-xl">
+
+          <div>
+            <h2 className="text-3xl font-bold mb-4 uppercase">Who Are We</h2>
+            <p className="text-gray-300 leading-relaxed">
+              <span className="italic text-white font-medium">“From a Village of Hope to a City of Dreams”</span><br /><br />
+              Sartawi Properties was born from the dreams of two brothers from a small village in Palestine—a name that stands for <strong>TRUST, RESILIENCE and AMBITION</strong>.
+              With over two decades of combined experience, they have witnessed the city's transformation firsthand and developed a unique understanding of its market dynamics.
+              They transformed their local expertise into a global real estate company, helping international investors navigate the city’s dynamic and booming property market.
+
+            </p>
+          </div>
+          <div>
+            <h2 className="text-3xl font-bold mb-4 uppercase">Our Purpose</h2>
+            <p className="text-gray-300 leading-relaxed">
+              At Sartawi Properties, our purpose goes beyond transactions—we help shape futures. As trusted real estate brokers, we guide international investors through Dubai’s dynamic property market with transparency, tailored support, and reliable results. Our mission is to build lasting relationships by offering personalized solutions that meet each client’s unique goals.
+              <br /><br />
+              With a profound understanding of the local market and a global perspective, we are well-equipped to navigate the complexities of Dubai’s real estate landscape and deliver outstanding results. We aim to create a global community of investors built on integrity, expertise, and long-term value while our experts navigate the complexities of Dubai’s real estate landscape and deliver outstanding results.
+
+            </p>
+          </div>
+        </div>
+      </section>  */}
+
+      {/* two columns */}
+      {/* <section className="bg-black text-white px-6 py-20">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-12 ">
+          {[
+            {
+              title: "Who Are We",
+              content:
+                "“From a Village of Hope to a City of Dreams” — Sartawi Properties was born from the dreams of two brothers from a small village in Palestine—a name that stands for TRUST, RESILIENCE and AMBITION. With over two decades of combined experience, they have witnessed the city's transformation firsthand and developed a unique understanding of its market dynamics. They transformed their local expertise into a global real estate company, helping international investors navigate the city’s dynamic and booming property market."
+            },
+            {
+              title: "Our Purpose",
+              content:
+                "At Sartawi Properties, our purpose goes beyond transactions—we help shape futures. As trusted real estate brokers, we guide international investors through Dubai’s dynamic property market with transparency, tailored support, and reliable results. Our mission is to build lasting relationships by offering personalized solutions that meet each client’s unique goals.\n\nWith a profound understanding of the local market and a global perspective, we are well-equipped to navigate the complexities of Dubai’s real estate landscape and deliver outstanding results. We aim to create a global community of investors built on integrity, expertise, and long-term value while our experts navigate the complexities of Dubai’s real estate landscape and deliver outstanding results."
+            }
+          ].map((item, idx) => (
+            <div key={idx} className="bg-[#1a1a1a] p-6 rounded-xl shadow-md hover:shadow-2xl transition duration-300">
+              <h2 className="text-2xl font-bold mb-4 uppercase">{item.title}</h2>
+              <p className="text-gray-300 whitespace-pre-line ">{item.content}</p>
+            </div>
+          ))}
+        </div>
+      </section> */}
+
+
+      {/* Timeline */}
+      {/* <section className="bg-gradient-to-br from-black via-[#1a1a1a] to-[#2d2d2d] text-white px-6 py-24">
+        <div className="max-w-4xl mx-auto">
+          <div className="relative border-l-2 border-gray-700 pl-6 space-y-16">
+            <div>
+              <div className="absolute w-4 h-4 bg-white rounded-full -left-2 top-1.5"></div>
+              <h2 className="text-2xl font-bold uppercase mb-2">Who Are We</h2>
+              <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
+                <span className="italic">“From a Village of Hope to a City of Dreams”</span><br /><br />
+                Sartawi Properties was born from the dreams of two brothers from a small village in Palestine—a name that stands for <strong>TRUST, RESILIENCE and AMBITION</strong>.
+                With over two decades of combined experience, they have witnessed the city's transformation firsthand and developed a unique understanding of its market dynamics.
+                They transformed their local expertise into a global real estate company, helping international investors navigate the city’s dynamic and booming property market.
+              </p>
+            </div>
+            <div>
+              <div className="absolute w-4 h-4 bg-white rounded-full -left-2 top-1.5"></div>
+              <h2 className="text-2xl font-bold uppercase mb-2">Our Purpose</h2>
+              <p className="text-gray-300 leading-relaxed text-sm sm:text-base">
+                At Sartawi Properties, our purpose goes beyond transactions—we help shape futures. As trusted real estate brokers, we guide international investors through Dubai’s dynamic property market with transparency, tailored support, and reliable results. Our mission is to build lasting relationships by offering personalized solutions that meet each client’s unique goals.
+                <br /><br />
+                With a profound understanding of the local market and a global perspective, we are well-equipped to navigate the complexities of Dubai’s real estate landscape and deliver outstanding results. We aim to create a global community of investors built on integrity, expertise, and long-term value while our experts navigate the complexities of Dubai’s real estate landscape and deliver outstanding results.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section> */}
+
+
+      {/* fancy borders */}
+      {/* <section className="bg-[#0a0a0a] text-white px-6 py-24">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10">
+          {["Who Are We", "Our Purpose"].map((title, i) => (
+            <div key={i} className="bg-gradient-to-br from-[#5e5454] via-[#7b788a] to-[#e2e2e2] p-1 rounded-2xl">
+              <div className="bg-[#111111] p-6 sm:p-8 rounded-2xl h-full">
+                <h2 className="text-2xl font-bold mb-4 uppercase">{title}</h2>
+                <p className="text-gray-300 text-sm leading-relaxed whitespace-pre-line">
+                  {i === 0
+                    ? `“From a Village of Hope to a City of Dreams” — Sartawi Properties was born from the dreams of two brothers from a small village in Palestine—a name that stands for TRUST, RESILIENCE and AMBITION. With over two decades of combined experience, they have witnessed the city's transformation firsthand and developed a unique understanding of its market dynamics. They transformed their local expertise into a global real estate company, helping international investors navigate the city’s dynamic and booming property market.`
+                    : `At Sartawi Properties, our purpose goes beyond transactions—we help shape futures. As trusted real estate brokers, we guide international investors through Dubai’s dynamic property market with transparency, tailored support, and reliable results. Our mission is to build lasting relationships by offering personalized solutions that meet each client’s unique goals.
+
+With a profound understanding of the local market and a global perspective, we are well-equipped to navigate the complexities of Dubai’s real estate landscape and deliver outstanding results. We aim to create a global community of investors built on integrity, expertise, and long-term value while our experts navigate the complexities of Dubai’s real estate landscape and deliver outstanding results.`}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section> */}
+      {/* <section className="bg-[#0a0a0a] text-white px-6 py-24">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div className="bg-gradient-to-br from-black via-[#1a1a1a] to-[#2d2d2d] p-8 rounded-xl shadow-lg border border-white/10">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="text-xl">🌍</span>
+              <h2 className="text-2xl font-bold uppercase">Who Are We</h2>
+            </div>
+            <p className="text-gray-300 leading-relaxed text-sm">
+              “From a Village of Hope to a City of Dreams” —  Sartawi Properties was born from the dreams of two brothers from a small village in Palestine—a name that stands for <strong>TRUST, RESILIENCE and AMBITION</strong>.
+              With over two decades of combined experience, they have witnessed the city's transformation firsthand and developed a unique understanding of its market dynamics.
+              They transformed their local expertise into a global real estate company, helping international investors navigate the city’s dynamic and booming property market.
+            </p>
+          </div>
+          <div className="bg-gradient-to-br from-black via-[#1a1a1a] to-[#2d2d2d] p-8 rounded-xl shadow-lg border border-white/10">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="text-xl">🎯</span>
+              <h2 className="text-2xl font-bold uppercase">Our Purpose</h2>
+            </div>
+            <p className="text-gray-300 leading-relaxed text-sm">
+              At Sartawi Properties, our purpose goes beyond transactions—we help shape futures. As trusted real estate brokers, we guide international investors through Dubai’s dynamic property market with transparency, tailored support, and reliable results. Our mission is to build lasting relationships by offering personalized solutions that meet each client’s unique goals.
+              <br /><br />
+              With a profound understanding of the local market and a global perspective, we are well-equipped to navigate the complexities of Dubai’s real estate landscape and deliver outstanding results. We aim to create a global community of investors built on integrity, expertise, and long-term value while our experts navigate the complexities of Dubai’s real estate landscape and deliver outstanding results.
+            </p>
+          </div>
+        </div>
+      </section> */}
+
+
+
+
+
 
 
 

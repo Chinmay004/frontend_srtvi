@@ -100,7 +100,7 @@ export default function ListingDetailsPage() {
         const mappedListing: Listing = {
           id: item.propertyId,
           title: item.name,
-          description: item.description,
+          description: decodeHtmlEntities(item.description),
           location: item.regionName || item.cityName || "Dubai",
           bedrooms: item?.newParameter?.bedroomMax ? parseInt(item.newParameter.bedroomMax) : 0,
           bathrooms: item?.newParameter?.washRoom || 0,
@@ -119,21 +119,21 @@ export default function ListingDetailsPage() {
             ? parseInt(item.newParameter.totalFloor)
             : undefined,
           developerName: item.developerName,
-        //   latitude: item.newParameter?.position
-        //     ? parseFloat(item.newParameter.position.split(",")[0])
-        //     : 0,
-        //   longitude: item.newParameter?.position
-        //     ? parseFloat(item.newParameter.position.split(",")[1])
-        //     : 0,
-       
-        latitude: item.newParameter?.position
-        ? parseFloat(item.newParameter.position.split(",")[0])
-        : undefined,
-      longitude: item.newParameter?.position
-        ? parseFloat(item.newParameter.position.split(",")[1])
-        : undefined,
- };
-        
+          //   latitude: item.newParameter?.position
+          //     ? parseFloat(item.newParameter.position.split(",")[0])
+          //     : 0,
+          //   longitude: item.newParameter?.position
+          //     ? parseFloat(item.newParameter.position.split(",")[1])
+          //     : 0,
+
+          latitude: item.newParameter?.position
+            ? parseFloat(item.newParameter.position.split(",")[0])
+            : undefined,
+          longitude: item.newParameter?.position
+            ? parseFloat(item.newParameter.position.split(",")[1])
+            : undefined,
+        };
+
 
 
         setListing(mappedListing);
@@ -214,13 +214,31 @@ export default function ListingDetailsPage() {
 
   if (!listing) return <div className="text-white">Loading...</div>;
 
-    function toTitleCase(str: string): string {
+  function toTitleCase(str: string): string {
     return str
       .toLowerCase()
       .split(' ')
       .map(word => word.charAt(0).toUpperCase() + word.slice(1))
       .join(' ');
   }
+
+  function decodeHtmlEntities(str: string): string {
+    return str
+      .replace(/â€¢/g, "•")
+      .replace(/â€™/g, "’")
+      .replace(/â€“/g, "–")
+      .replace(/â€œ/g, "“")
+      .replace(/â€/g, "…")
+      .replace(/â€/g, "”")
+      .replace(/Ã©/g, "é")
+      .replace(/&amp;/g, "&")
+      .replace(/&nbsp;/g, " ")
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/â€/g, "-")
+      .replace(/Ã/g, "à");
+  }
+
 
   return (
     <div className="bg-black text-white min-h-screen">
@@ -258,7 +276,7 @@ export default function ListingDetailsPage() {
               ))}
             </div> */}
 
-              {/* version2 */}
+            {/* version2 */}
             {/* <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-2 mt-4 max-h-[110px] overflow-y-auto pr-2">
                 {listing.images.map((img, i) => (
                   <button
@@ -281,14 +299,13 @@ export default function ListingDetailsPage() {
 
 
 
-                <div className="flex overflow-x-auto gap-2 mt-4 pb-2 scrollbar-hide">
+            <div className="flex overflow-x-auto gap-2 mt-4 pb-2 scrollbar-hide">
               {listing.images.map((img, i) => (
                 <button
                   key={i}
                   onClick={() => setMainImage(img)}
-                  className={`relative flex-shrink-0 w-28 h-20 rounded-lg overflow-hidden border ${
-                    mainImage === img ? "border-white" : "border-transparent"
-                  }`}
+                  className={`relative flex-shrink-0 w-28 h-20 rounded-lg overflow-hidden border ${mainImage === img ? "border-white" : "border-transparent"
+                    }`}
                 >
                   <Image
                     src={img}
@@ -308,26 +325,33 @@ export default function ListingDetailsPage() {
           <div className="w-full lg:w-2/5">
             <h1 className="text-3xl font-bold mb-2 capitalize">{listing.title}</h1>
             <p className="mb-2 capitalize text-[#479aff]">{listing.location}</p>
-            <p className="text-[#999999] mb-4 max-h-52 overflow-y-auto   ">
+            {/* <div className="text-[#999999] mb-4 max-h-52 overflow-y-auto pr-2">
+              <p className="whitespace-pre-line">
+                {listing.description}
+              </p>
+            </div> */}
+
+            <div><p className="text-[#999999] mb-4 max-h-52 overflow-y-auto scrollbar-hide">
               {listing.description.length > 400
-                ? `${listing.description.slice(0, 400)}...`
+                ? `${listing.description}`
                 : listing.description}
             </p>
+            </div>
 
             <div className="flex flex-wrap gap-3 text-sm mb-4">
-               <span className="bg-[#1a1a1a] px-2 py-1 rounded-xl border border-[#262626] flex items-center gap-1">
-                  <Image src="/building/Icon.png" alt="" className="h-4" width={16} height={16} />
-                  {listing.bedrooms > 0 ? `${listing.bedrooms}-Bedroom` : 'Bedroom'}
-                </span>
-                <span className="bg-[#1a1a1a] px-2 py-1 rounded-xl border border-[#262626] flex items-center gap-1">
-                  <Image src="/building/Icon1.png" alt="" className="h-4" width={16} height={16} />
-                  {listing.bathrooms > 0 ? `${listing.bathrooms}-Bathroom` : 'Bathroom'}
-                </span>
-                <span className="bg-[#1a1a1a] px-2 py-1 rounded-xl border border-[#262626] flex items-center gap-1">
-                  <Image src="/building/Icon2.png" alt="" className="h-4" width={16} height={16} />
-                  {listing.type}
-                </span>
-          </div>
+              <span className="bg-[#1a1a1a] px-2 py-1 rounded-xl border border-[#262626] flex items-center gap-1">
+                <Image src="/building/Icon.png" alt="" className="h-4" width={16} height={16} />
+                {listing.bedrooms > 0 ? `${listing.bedrooms}-Bedroom` : 'Bedroom'}
+              </span>
+              <span className="bg-[#1a1a1a] px-2 py-1 rounded-xl border border-[#262626] flex items-center gap-1">
+                <Image src="/building/Icon1.png" alt="" className="h-4" width={16} height={16} />
+                {listing.bathrooms > 0 ? `${listing.bathrooms}-Bathroom` : 'Bathroom'}
+              </span>
+              <span className="bg-[#1a1a1a] px-2 py-1 rounded-xl border border-[#262626] flex items-center gap-1">
+                <Image src="/building/Icon2.png" alt="" className="h-4" width={16} height={16} />
+                {listing.type}
+              </span>
+            </div>
 
             <p className="text-4xl font-semibold mb-4 mt-10">
               AED {listing.price.toLocaleString()}
@@ -339,16 +363,16 @@ export default function ListingDetailsPage() {
             >
               Enquire Now
             </button>
-            
+
           </div>
         </div>
       </section>
       <ContactModal
-  isOpen={showContactModal}
-  onClose={() => setShowContactModal(false)}
-/>
+        isOpen={showContactModal}
+        onClose={() => setShowContactModal(false)}
+      />
 
-      
+
 
       {/* <div className="grid grid-cols-2 sm:grid-cols-4 gap-10 text-sm mt-10 bg-[#1a1a1a] py-10 px-13">
         <p className="flex flex-col text-lg">
@@ -378,7 +402,7 @@ export default function ListingDetailsPage() {
         </p>
       </div> */}
 
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 text-sm mt-10 bg-[#1a1a1a] py-10 px-4 sm:px-8 lg:px-12 min-h-54">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 text-sm mt-10 bg-[#1a1a1a] py-10 px-4 sm:px-8 lg:px-12 min-h-54">
         {listing.developerName && (
           <p className="flex flex-col text-base">
             <strong className="text-[#a5a5a5] font-normal">Developer Name</strong>
@@ -435,64 +459,64 @@ export default function ListingDetailsPage() {
       </div>
 
 
-     
+
       <div className="bg-[#fafafa] py-16 px-4 sm:px-6 lg:px-12">
-  <h2 className="text-center text-3xl font-semibold mb-10 text-black">
-    About the Neighbourhood
-  </h2>
+        <h2 className="text-center text-3xl font-semibold mb-10 text-black">
+          About the Neighbourhood
+        </h2>
 
-  <p className="text-sm text-gray-500 mt-2">
-  Latitude: {listing.latitude}, Longitude: {listing.longitude}
-</p>
+        <p className="text-sm text-gray-500 mt-2">
+          Latitude: {listing.latitude}, Longitude: {listing.longitude}
+        </p>
 
 
-  {/* <div className="flex flex-col lg:flex-row bg-white shadow-lg rounded-xl overflow-hidden"> */}
-  <div className={`flex flex-col ${ wasGeocoded ? "items-center" : "lg:flex-row" } bg-white shadow-lg rounded-xl overflow-hidden`}>
+        {/* <div className="flex flex-col lg:flex-row bg-white shadow-lg rounded-xl overflow-hidden"> */}
+        <div className={`flex flex-col ${wasGeocoded ? "items-center" : "lg:flex-row"} bg-white shadow-lg rounded-xl overflow-hidden`}>
 
-    {/* Left Column - Map Section */}
-    {/* <div className="w-full lg:w-1/2 p-6 sm:p-8 flex flex-col justify-between"> */}
-    <div className={`${ wasGeocoded ? "w-full lg:w-2/3" : "w-full lg:w-1/2"} p-6 sm:p-8 flex flex-col justify-between`}>
-      <div>
-        <h3 className="text-xl text-black font-semibold mb-2 capitalize">
-          {listing.title}
-        </h3>
-        <p className="text-gray-600 mb-4">{listing.location}</p>
+          {/* Left Column - Map Section */}
+          {/* <div className="w-full lg:w-1/2 p-6 sm:p-8 flex flex-col justify-between"> */}
+          <div className={`${wasGeocoded ? "w-full lg:w-2/3" : "w-full lg:w-1/2"} p-6 sm:p-8 flex flex-col justify-between`}>
+            <div>
+              <h3 className="text-xl text-black font-semibold mb-2 capitalize">
+                {listing.title}
+              </h3>
+              <p className="text-gray-600 mb-4">{listing.location}</p>
 
-        {typeof listing.latitude === "number" &&
-        typeof listing.longitude === "number" ? (
-          // <div className={`${wasGeocoded ? "h-[500px]" : "h-[300px]"} mb-4`}>
+              {typeof listing.latitude === "number" &&
+                typeof listing.longitude === "number" ? (
+                // <div className={`${wasGeocoded ? "h-[500px]" : "h-[300px]"} mb-4`}>
 
-          <MapClientOnly 
-            lat={listing.latitude}
-            lng={listing.longitude}
-            title={listing.title}
-            location={listing.location}
-            height={wasGeocoded ? "500px" : "300px"}
+                <MapClientOnly
+                  lat={listing.latitude}
+                  lng={listing.longitude}
+                  title={listing.title}
+                  location={listing.location}
+                  height={wasGeocoded ? "500px" : "300px"}
 
-          />
-          // </div>
+                />
+                // </div>
 
-        ) : (
-          <p className="text-sm text-gray-500">Location not available</p>
-        )}
-      </div>
+              ) : (
+                <p className="text-sm text-gray-500">Location not available</p>
+              )}
+            </div>
 
-      <button
-        onClick={() => {
-          const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${listing.latitude},${listing.longitude}`;
-          window.open(gmapsUrl, "_blank");
-        }}
-        className="bg-[#157cfb] text-white px-6 py-2 rounded mt-6 font-sans w-full"
-      >
-        Get Directions
-      </button>
-    </div>
+            <button
+              onClick={() => {
+                const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${listing.latitude},${listing.longitude}`;
+                window.open(gmapsUrl, "_blank");
+              }}
+              className="bg-[#157cfb] text-white px-6 py-2 rounded mt-6 font-sans w-full"
+            >
+              Get Directions
+            </button>
+          </div>
 
-    {/* Divider - visible only on large screens */}
-    <div className="hidden lg:block w-px bg-gray-300 mx-2"></div>
+          {/* Divider - visible only on large screens */}
+          <div className="hidden lg:block w-px bg-gray-300 mx-2"></div>
 
-        {/* Right Column - Amenities */}
-        {/* <div className="w-full lg:w-1/2 p-6 sm:p-8 bg-white">
+          {/* Right Column - Amenities */}
+          {/* <div className="w-full lg:w-1/2 p-6 sm:p-8 bg-white">
           <h3 className="text-xl font-semibold mb-4 text-black">
             Amenities Near You
           </h3>
@@ -511,33 +535,33 @@ export default function ListingDetailsPage() {
         </ul>
         </div> */}
 
-    {!wasGeocoded && (
+          {!wasGeocoded && (
 
-      <div className="w-full lg:w-1/2 p-6 sm:p-8 bg-white">
-        <h3 className="text-xl font-semibold mb-4 text-black">
-          Amenities Near You
-        </h3>
-        <ul className="space-y-3 text-[#565656]">
-          {nearbyAmenities.length === 0 ? (
-            <li>No amenities found nearby.</li>
-          ) : (
-            nearbyAmenities.map((item, index) => (
-              <li key={index}>
-                <strong className="text-lg">{item.name}</strong>
-                <br />
-                {(item.distance / 1000).toFixed(1)} km from location
-              </li>
-            ))
+            <div className="w-full lg:w-1/2 p-6 sm:p-8 bg-white">
+              <h3 className="text-xl font-semibold mb-4 text-black">
+                Amenities Near You
+              </h3>
+              <ul className="space-y-3 text-[#565656]">
+                {nearbyAmenities.length === 0 ? (
+                  <li>No amenities found nearby.</li>
+                ) : (
+                  nearbyAmenities.map((item, index) => (
+                    <li key={index}>
+                      <strong className="text-lg">{item.name}</strong>
+                      <br />
+                      {(item.distance / 1000).toFixed(1)} km from location
+                    </li>
+                  ))
+                )}
+              </ul>
+            </div>
+
+
+
           )}
-        </ul>
+
+        </div>
       </div>
-
-
-  
-)}
-
-      </div>
-</div>
 
 
       <section className="bg-[#0f0f0f] text-white py-10">
