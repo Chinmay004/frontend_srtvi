@@ -64,6 +64,7 @@ interface RawAPIListing {
 }
 
 
+
 export default function Home() {
   const router = useRouter();
   const [inputSearch, setInputSearch] = useState("");
@@ -207,45 +208,85 @@ export default function Home() {
         </div>
       </div>
 
-      <section className="bg-black text-white px-6 py-20 sm:px-10 lg:px-28">
-        <div className="max-w-5xl mx-auto text-center space-y-16">
-          {/* <div>
-            <h2 className="text-4xl font-light tracking-widest text-gray-400 uppercase mb-6">Who Are We</h2>
-            <p className="text-lg leading-relaxed text-gray-300">
-              <span className="italic text-white font-medium">“From a Village of Hope to a City of Dreams”</span><br /><br />
-              Sartawi Properties was born from the dreams of two brothers from a small village in Palestine—a name that stands for <strong>TRUST, RESILIENCE and AMBITION</strong>.
-              With over two decades of combined experience, they have witnessed the city's transformation firsthand and developed a unique understanding of its market dynamics.
-              They transformed their local expertise into a global real estate company, helping international investors navigate the city’s dynamic and booming property market.
-            </p>
-          </div> */}
-          <div>
-            <h2 className="text-4xl font-light tracking-widest text-gray-400 uppercase mb-6">Who Are We</h2>
-            <p className="text-lg leading-relaxed text-gray-300">
-              <span className="italic text-white font-medium">“From a Village of Hope to a City of Dreams”</span><br /><br />
-              Sartawi Properties was born from the dreams of two brothers from a small village in Palestine&mdash;a name that stands for <strong>TRUST, RESILIENCE and AMBITION</strong>.<br /><br />
-              With over two decades of combined experience, they have witnessed the city&rsquo;s transformation firsthand and developed a unique understanding of its market dynamics.<br /><br />
-              They transformed their local expertise into a global real estate company, helping international investors navigate the city&rsquo;s dynamic and booming property market.
-            </p>
+
+
+      {/* new */}
+      <section className="bg-black text-white px-6 py-24 sm:px-10 lg:px-24 relative overflow-hidden">
+        {/* Soft grey blur accents */}
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+          <div className="absolute top-[10%] left-[5%] w-72 h-72 bg-gray-700 opacity-10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-[10%] right-[5%] w-72 h-72 bg-gray-600 opacity-10 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="relative max-w-6xl mx-auto space-y-32 z-10">
+
+          {/* Who Are We */}
+          <div className="flex flex-col lg:flex-row items-center gap-12 group" data-aos="fade-up">
+            {/* Text first */}
+            <div className="w-full lg:w-[55%] order-1 lg:order-none">
+              <h2 className="text-4xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 uppercase mb-6 tracking-widest">
+                Who Are We
+              </h2>
+              <p className="text-lg leading-relaxed text-gray-300">
+                <span className="italic text-white font-medium block mb-4">
+                  “From a Village of Hope to a City of Dreams”
+                </span>
+                Sartawi Properties was born from the dreams of two brothers from a small village in Palestine&mdash;a name that stands for <strong className="text-white">TRUST, RESILIENCE and AMBITION</strong>.
+                <br /><br />
+                With over two decades of combined experience, they have witnessed the city&rsquo;s transformation firsthand and developed a unique understanding of its market dynamics.
+                <br /><br />
+                They transformed their local expertise into a global real estate company, helping international investors navigate the city&rsquo;s dynamic and booming property market.
+              </p>
+            </div>
+
+            {/* Image second */}
+            <div className="w-full lg:w-[45%] order-2 lg:order-none transition-transform duration-300 group-hover:scale-[1.02]">
+              <div className="relative w-full h-0 pb-[75%] rounded-2xl overflow-hidden shadow-lg border border-gray-800">
+                <Image
+                  src="/2men.jpg"
+                  alt="Founders of Sartawi Properties"
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-2xl group-hover:scale-105 transition-transform duration-500 ease-out"
+                />
+              </div>
+            </div>
           </div>
 
+          {/* Our Purpose */}
+          <div className="flex flex-col lg:flex-row-reverse items-center gap-12 group" data-aos="fade-up">
+            {/* Text first */}
+            <div className="w-full lg:w-[55%] order-1 lg:order-none">
+              <h2 className="text-4xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-white uppercase mb-6 tracking-widest">
+                Our Purpose
+              </h2>
+              <p className="text-lg leading-relaxed text-gray-300">
+                At Sartawi Properties, our purpose goes beyond transactions&mdash;we help shape futures. As trusted real estate brokers, we guide international investors through Dubai&rsquo;s dynamic property market with transparency, tailored support, and reliable results.
+                <br /><br />
+                Our mission is to build lasting relationships by offering personalized solutions that meet each client&rsquo;s unique goals.
+                <br /><br />
+                With a profound understanding of the local market and a global perspective, we are well-equipped to navigate the complexities of Dubai&rsquo;s real estate landscape and deliver outstanding results.
+                <br /><br />
+                We aim to create a global community of investors built on integrity, expertise, and long-term value while our experts navigate the complexities of Dubai&rsquo;s real estate landscape and deliver outstanding results.
+              </p>
+            </div>
 
-
-          <div>
-            <h2 className="text-4xl font-light tracking-widest text-gray-400 uppercase mb-6">Our Purpose</h2>
-            <p className="text-lg leading-relaxed text-gray-300">
-              At Sartawi Properties, our purpose goes beyond transactions&mdash;we help shape futures. As trusted real estate brokers, we guide international investors through Dubai&rsquo;s dynamic property market with transparency, tailored support, and reliable results.<br /><br />
-              Our mission is to build lasting relationships by offering personalized solutions that meet each client&rsquo;s unique goals.<br /><br />
-              With a profound understanding of the local market and a global perspective, we are well-equipped to navigate the complexities of Dubai&rsquo;s real estate landscape and deliver outstanding results.<br /><br />
-              We aim to create a global community of investors built on integrity, expertise, and long-term value while our experts navigate the complexities of Dubai&rsquo;s real estate landscape and deliver outstanding results.
-            </p>
+            {/* Image second */}
+            <div className="w-full lg:w-[45%] order-2 lg:order-none transition-transform duration-300 group-hover:scale-[1.02]">
+              <div className="relative w-full h-0 pb-[75%] rounded-2xl overflow-hidden shadow-lg border border-gray-800">
+                <Image
+                  src="/group.jpg"
+                  alt="Our Purpose"
+                  layout="fill"
+                  objectFit="cover"
+                  className="rounded-2xl group-hover:scale-105 transition-transform duration-500 ease-out"
+                />
+              </div>
+            </div>
           </div>
 
         </div>
       </section>
-
-
-
-
 
 
 

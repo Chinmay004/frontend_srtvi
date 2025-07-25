@@ -10,7 +10,7 @@ export default function AboutPage() {
       <main className="bg-black text-white font-sans">
         {/* Hero Section */}
         {/* Hero Banner */}
-        <div className="relative overflow-hidden">
+        {/* <div className="relative overflow-hidden">
           <div className="relative w-full h-[40vh] overflow-hidden">
             <Image
               src="/sunset.jpg"
@@ -38,10 +38,9 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Who are we */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-8 px-10 items-center py-30">
-          <div className="rounded overflow-hidden">
-            <Image src="/hall.jpg" alt="Interior" width={600} height={400} className="rounded-md" />
+          <div className="rounded overflow-hidden  justify-items-center">
+            <Image src="/2men.jpg" alt="Interior" width={400} height={200} className="rounded-md " />
           </div>
           <div className="h-full">
             <h1 className="text-4xl font-bold mb-4">Who are We?</h1>
@@ -74,7 +73,86 @@ export default function AboutPage() {
               outstanding&nbsp;results.
             </p>
           </div>
+        </section> */}
+
+
+        <section className="bg-black text-white px-6 py-24 sm:px-10 lg:px-24 relative overflow-hidden">
+          {/* Soft grey blur accents */}
+          <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+            <div className="absolute top-[10%] left-[5%] w-72 h-72 bg-gray-700 opacity-10 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-[10%] right-[5%] w-72 h-72 bg-gray-600 opacity-10 rounded-full blur-3xl"></div>
+          </div>
+
+          <div className="relative max-w-6xl mx-auto space-y-32 z-10">
+
+            {/* Who Are We */}
+            <div className="flex flex-col lg:flex-row items-center gap-12 group" data-aos="fade-up">
+              {/* Text first */}
+              <div className="w-full lg:w-[55%] order-1 lg:order-none">
+                <h2 className="text-4xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 uppercase mb-6 tracking-widest">
+                  Who Are We
+                </h2>
+                <p className="text-lg leading-relaxed text-gray-300">
+                  <span className="italic text-white font-medium block mb-4">
+                    “From a Village of Hope to a City of Dreams”
+                  </span>
+                  Sartawi Properties was born from the dreams of two brothers from a small village in Palestine&mdash;a name that stands for <strong className="text-white">TRUST, RESILIENCE and AMBITION</strong>.
+                  <br /><br />
+                  With over two decades of combined experience, they have witnessed the city&rsquo;s transformation firsthand and developed a unique understanding of its market dynamics.
+                  <br /><br />
+                  They transformed their local expertise into a global real estate company, helping international investors navigate the city&rsquo;s dynamic and booming property market.
+                </p>
+              </div>
+
+              {/* Image second */}
+              <div className="w-full lg:w-[45%] order-2 lg:order-none transition-transform duration-300 group-hover:scale-[1.02]">
+                <div className="relative w-full h-0 pb-[75%] rounded-2xl overflow-hidden shadow-lg border border-gray-800">
+                  <Image
+                    src="/2men.jpg"
+                    alt="Founders of Sartawi Properties"
+                    layout="fill"
+                    objectFit="cover"
+                    className="rounded-2xl group-hover:scale-105 transition-transform duration-500 ease-out"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Our Purpose */}
+            <div className="flex flex-col lg:flex-row-reverse items-center gap-12 group" data-aos="fade-up">
+              {/* Text first */}
+              <div className="w-full lg:w-[55%] order-1 lg:order-none">
+                <h2 className="text-4xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-white uppercase mb-6 tracking-widest">
+                  Our Purpose
+                </h2>
+                <p className="text-lg leading-relaxed text-gray-300">
+                  At Sartawi Properties, our purpose goes beyond transactions&mdash;we help shape futures. As trusted real estate brokers, we guide international investors through Dubai&rsquo;s dynamic property market with transparency, tailored support, and reliable results.
+                  <br /><br />
+                  Our mission is to build lasting relationships by offering personalized solutions that meet each client&rsquo;s unique goals.
+                  <br /><br />
+                  With a profound understanding of the local market and a global perspective, we are well-equipped to navigate the complexities of Dubai&rsquo;s real estate landscape and deliver outstanding results.
+                  <br /><br />
+                  We aim to create a global community of investors built on integrity, expertise, and long-term value while our experts navigate the complexities of Dubai&rsquo;s real estate landscape and deliver outstanding results.
+                </p>
+              </div>
+
+              {/* Image second */}
+              <div className="w-full lg:w-[45%] order-2 lg:order-none transition-transform duration-300 group-hover:scale-[1.02]">
+                <div className="relative w-full h-0 pb-[75%] rounded-2xl overflow-hidden shadow-lg border border-gray-800">
+                  <Image
+                    src="/group.jpg"
+                    alt="Our Purpose"
+                    layout="fill"
+                    objectFit="cover"
+                    className="rounded-2xl group-hover:scale-105 transition-transform duration-500 ease-out"
+                  />
+                </div>
+              </div>
+            </div>
+
+          </div>
         </section>
+
 
         {/* Achievements */}
         <section className="bg-[#111] py-12 text-center w-full h-80 ">
@@ -98,27 +176,7 @@ export default function AboutPage() {
             </div>
           </div>
         </section>
-        {/* <section className="py-20 px-6 max-w-5xl mx-auto">
-  <h2 className="text-4xl font-normal text-center mb-12">Our Founding Team</h2>
-  <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 justify-items-center">
-    {[
-      { name: 'Mohannad', img: '/brokers/team.jpg' },
-      { name: 'Mohammed ', img: '/brokers/team2.jpg' },
-    ].map((agent, idx) => (
-      <div key={idx} className="text-center max-w-xs w-full">
-        <div className="relative w-full h-72 rounded-lg mb-4 overflow-hidden shadow-lg">
-          <Image
-            src={agent.img}
-            alt={agent.name}
-            fill
-            className="object-cover"
-          />
-        </div>
-        <p className="font-medium text-lg">{agent.name}</p>
-      </div>
-    ))}
-  </div>
-</section> */}
+
 
         <section className="py-20 px-6 max-w-5xl mx-auto">
           <h2 className="text-4xl font-bold text-center mb-12">Our Founding Team</h2>
@@ -156,6 +214,9 @@ export default function AboutPage() {
             ))}
           </div>
         </section>
+
+
+
 
 
         {/* Contact Section */}

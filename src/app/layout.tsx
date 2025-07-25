@@ -12,6 +12,8 @@ const urbanist = Urbanist({
   variable: "--font-urbanist",
 });
 
+
+
 export const metadata: Metadata = {
   title: "Sartawi Properties - Discover Your Dream Property",
   description: "Find premium real estate properties in Dubai with Sartawi.",

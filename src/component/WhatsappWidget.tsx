@@ -389,6 +389,114 @@
 
 //vesrion 4
 
+// 'use client';
+
+// import { useEffect, useState, useRef } from 'react';
+// import Image from 'next/image';
+
+// const WhatsAppWidget = () => {
+//     const [showMessage, setShowMessage] = useState(false);
+//     const [hasShownInitially, setHasShownInitially] = useState(false);
+//     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+//     // Auto show popup on load (for 3 seconds)
+//     useEffect(() => {
+//         if (!hasShownInitially) {
+//             setShowMessage(true);
+//             timeoutRef.current = setTimeout(() => {
+//                 setShowMessage(false);
+//             }, 3000);
+//             setHasShownInitially(true);
+//         }
+
+//         return () => {
+//             clearTimeout(timeoutRef.current!);
+//         };
+//     }, [hasShownInitially]);
+
+//     const handleClose = () => {
+//         setShowMessage(false);
+//     };
+
+//     const handleMouseEnter = () => {
+//         setShowMessage(true);
+//     };
+
+//     const handleMouseLeave = () => {
+//         setShowMessage(false);
+//     };
+
+//     const handleIconClick = (e: React.MouseEvent) => {
+//         e.preventDefault(); // Prevent WhatsApp redirect
+//         setShowMessage(true);
+//     };
+
+//     return (
+//         <div
+//             className="fixed bottom-6 right-6 z-50 flex flex-col items-end space-y-2"
+//             onMouseEnter={handleMouseEnter}
+//             onMouseLeave={handleMouseLeave}
+//         >
+//             {/* Popup Message */}
+//             {showMessage && (
+//                 <div className="relative w-72 sm:w-80 animate-fade-in bg-white text-black rounded-xl shadow-2xl border border-gray-200 overflow-hidden transition-opacity duration-500">
+//                     {/* Header */}
+//                     <div className="flex items-center justify-between px-3 py-2 border-b border-gray-100">
+//                         <div className="flex items-center space-x-2">
+//                             <Image
+//                                 src="/whatsapp-icon.svg"
+//                                 alt="WhatsApp"
+//                                 width={20}
+//                                 height={20}
+//                                 className="min-w-[20px]"
+//                             />
+//                             <div>
+//                                 <p className="text-sm font-semibold text-gray-900 leading-tight">Sartawi Group</p>
+//                                 <p className="text-xs text-gray-500 leading-none">Customer Support</p>
+//                             </div>
+//                         </div>
+//                         <button
+//                             onClick={handleClose}
+//                             className="text-gray-400 hover:text-red-500 text-lg leading-none"
+//                             title="Close"
+//                         >
+//                             ✕
+//                         </button>
+//                     </div>
+
+//                     {/* Message Body */}
+//                     <div className="px-3 py-2 text-sm text-gray-800 leading-snug">
+//                         <p>👋 Connect with us on Whatsapp!</p>
+//                     </div>
+
+//                     {/* Send Message Button */}
+//                     <div className="px-3 pb-3 pt-1">
+//                         <a
+//                             href="https://wa.me/971529323341"
+//                             target="_blank"
+//                             rel="noopener noreferrer"
+//                             className="block w-full text-center bg-green-500 hover:bg-green-600 text-white text-[13px] py-2 rounded-md font-medium transition-all duration-300"
+//                         >
+//                             Send A Message
+//                         </a>
+//                     </div>
+//                 </div>
+//             )}
+
+//             {/* WhatsApp Button (click opens popup instead of redirecting) */}
+//             <button
+//                 onClick={handleIconClick}
+//                 className="bg-green-500 hover:bg-green-600 text-white p-3 rounded-full shadow-lg transition-all duration-300"
+//                 title="Chat with us on WhatsApp"
+//             >
+//                 <Image src="/whatsapp-icon.svg" alt="WhatsApp" width={28} height={28} />
+//             </button>
+//         </div>
+//     );
+// };
+
+// export default WhatsAppWidget;
+
 'use client';
 
 import { useEffect, useState, useRef } from 'react';
@@ -399,7 +507,6 @@ const WhatsAppWidget = () => {
     const [hasShownInitially, setHasShownInitially] = useState(false);
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-    // Auto show popup on load (for 3 seconds)
     useEffect(() => {
         if (!hasShownInitially) {
             setShowMessage(true);
@@ -427,7 +534,7 @@ const WhatsAppWidget = () => {
     };
 
     const handleIconClick = (e: React.MouseEvent) => {
-        e.preventDefault(); // Prevent WhatsApp redirect
+        e.preventDefault();
         setShowMessage(true);
     };
 
@@ -439,9 +546,9 @@ const WhatsAppWidget = () => {
         >
             {/* Popup Message */}
             {showMessage && (
-                <div className="relative w-72 sm:w-80 animate-fade-in bg-white text-black rounded-xl shadow-2xl border border-gray-200 overflow-hidden transition-opacity duration-500">
+                <div className="relative w-72 sm:w-80 animate-fade-in bg-black text-white rounded-xl shadow-2xl border border-gray-700 overflow-hidden transition-opacity duration-500">
                     {/* Header */}
-                    <div className="flex items-center justify-between px-3 py-2 border-b border-gray-100">
+                    <div className="flex items-center justify-between px-3 py-2 border-b border-gray-700">
                         <div className="flex items-center space-x-2">
                             <Image
                                 src="/whatsapp-icon.svg"
@@ -451,13 +558,13 @@ const WhatsAppWidget = () => {
                                 className="min-w-[20px]"
                             />
                             <div>
-                                <p className="text-sm font-semibold text-gray-900 leading-tight">Sartawi Group</p>
-                                <p className="text-xs text-gray-500 leading-none">Customer Support</p>
+                                <p className="text-sm font-semibold text-white leading-tight">Sartawi Group</p>
+                                <p className="text-xs text-gray-400 leading-none">Customer Support</p>
                             </div>
                         </div>
                         <button
                             onClick={handleClose}
-                            className="text-gray-400 hover:text-red-500 text-lg leading-none"
+                            className="text-gray-400 hover:text-red-400 text-lg leading-none"
                             title="Close"
                         >
                             ✕
@@ -465,8 +572,8 @@ const WhatsAppWidget = () => {
                     </div>
 
                     {/* Message Body */}
-                    <div className="px-3 py-2 text-sm text-gray-800 leading-snug">
-                        <p>👋 Connect with us on Whatsapp!</p>
+                    <div className="px-3 py-2 text-sm text-gray-300 leading-snug">
+                        <p>👋 Need quick answers? Tap to chat with us!</p>
                     </div>
 
                     {/* Send Message Button */}
@@ -475,7 +582,7 @@ const WhatsAppWidget = () => {
                             href="https://wa.me/971529323341"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="block w-full text-center bg-green-500 hover:bg-green-600 text-white text-[13px] py-2 rounded-md font-medium transition-all duration-300"
+                            className="block w-full text-center bg-gray-800 hover:bg-gray-700 text-white text-[13px] py-2 rounded-md font-medium transition-all duration-300"
                         >
                             Send A Message
                         </a>
@@ -483,10 +590,10 @@ const WhatsAppWidget = () => {
                 </div>
             )}
 
-            {/* WhatsApp Button (click opens popup instead of redirecting) */}
+            {/* WhatsApp Icon Button */}
             <button
                 onClick={handleIconClick}
-                className="bg-green-500 hover:bg-green-600 text-white p-3 rounded-full shadow-lg transition-all duration-300"
+                className="bg-gray-900 hover:bg-gray-800 text-white p-3 rounded-full shadow-lg transition-all duration-300"
                 title="Chat with us on WhatsApp"
             >
                 <Image src="/whatsapp-icon.svg" alt="WhatsApp" width={28} height={28} />
