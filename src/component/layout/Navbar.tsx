@@ -255,7 +255,7 @@ const Navbar = () => {
 
             ].map((item) => (
               <Link
-                key={item.href}
+                key={`${item.name}-${item.href}`}
                 href={item.href}
                 onClick={handleCloseMenu}
                 className="pl-4 text-sm hover:text-[#e0b973] transition-colors"
