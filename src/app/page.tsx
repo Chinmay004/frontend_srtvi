@@ -223,7 +223,7 @@ export default function Home() {
           {/* Who Are We */}
           <div className="flex flex-col lg:flex-row items-center gap-12 group" data-aos="fade-up">
             {/* Text first */}
-            <div className="w-full lg:w-[55%] order-1 lg:order-none">
+            {/* <div className="w-full lg:w-[55%] order-1 lg:order-none">
               <h2 className="text-4xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 uppercase mb-6 tracking-widest">
                 Who Are We
               </h2>
@@ -237,10 +237,54 @@ export default function Home() {
                 <br /><br />
                 They transformed their local expertise into a global real estate company, helping international investors navigate the city&rsquo;s dynamic and booming property market.
               </p>
+            </div> */}
+            {/* Who Are We */}
+            <div className="flex flex-col lg:flex-row items-center gap-12 group" data-aos="fade-up">
+              {/* Text first */}
+              <div className="w-full lg:w-[55%] order-1 lg:order-none">
+                <h2 className="text-4xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400 uppercase mb-6 tracking-widest">
+                  Who Are We
+                </h2>
+                <p className="text-lg leading-relaxed text-gray-300">
+                  <span className="italic text-white font-medium block mb-4">
+                    “From a Village of Hope to a City of Dreams”
+                  </span>
+                  Sartawi Properties was born from the dreams of two brothers from a small village in Palestine&mdash;a name that stands for <strong className="text-white">TRUST, RESILIENCE and AMBITION</strong>.
+                  <br /><br />
+                  With over two decades of combined experience, they have witnessed the city&rsquo;s transformation firsthand and developed a unique understanding of its market dynamics.
+                  <br /><br />
+                  They transformed their local expertise into a global real estate company, helping international investors navigate the city&rsquo;s dynamic and booming property market.
+                </p>
+              </div>
+
+              {/* Image second (portrait ratio) */}
+              {/* <div className="w-full lg:w-[45%] order-2 lg:order-none transition-transform duration-300 group-hover:scale-[1.02]">
+                <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden shadow-lg border border-gray-800">
+                  <Image
+                    src="/2menp.jpg"
+                    alt="Founders of Sartawi Properties"
+                    fill
+                    className="object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500 ease-out"
+                  />
+                </div>
+              </div>*/}
+              <div className="flex justify-center w-full lg:w-[45%] order-2 lg:order-none transition-transform duration-300 group-hover:scale-[1.02]">
+                <div className="relative aspect-[3/4] w-64 sm:w-72 md:w-80 lg:w-72 xl:w-80 rounded-2xl overflow-hidden shadow-lg border border-gray-800 bg-black">
+                  <Image
+                    src="/2men.jpg"
+                    alt="Founders of Sartawi Properties"
+                    fill
+                    className="object-contain rounded-2xl transition-transform duration-500 ease-out"
+                  />
+                </div>
+              </div>
+
             </div>
 
+
+
             {/* Image second */}
-            <div className="w-full lg:w-[45%] order-2 lg:order-none transition-transform duration-300 group-hover:scale-[1.02]">
+            {/* <div className="w-full lg:w-[45%] order-2 lg:order-none transition-transform duration-300 group-hover:scale-[1.02]">
               <div className="relative w-full h-0 pb-[75%] rounded-2xl overflow-hidden shadow-lg border border-gray-800">
                 <Image
                   src="/2men.jpg"
@@ -250,7 +294,7 @@ export default function Home() {
                   className="rounded-2xl group-hover:scale-105 transition-transform duration-500 ease-out"
                 />
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Our Purpose */}
@@ -291,7 +335,7 @@ export default function Home() {
 
 
       <div className="bg-black text-white">
-        <div className="bg-gradient-to-r from-[#2c2c3c] via-black to-black text-white py-16 px-4 sm:px-10">
+        {/* <div className="bg-gradient-to-r from-[#2c2c3c] via-black to-black text-white py-16 px-4 sm:px-10">
           <h2 className="text-2xl sm:text-3xl font-semibold text-center mb-12">Our Services</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 max-w-5xl mx-auto">
             {[
@@ -311,31 +355,10 @@ export default function Home() {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
 
 
-        {/* Achievements
-        <section className="bg-[#3e4470] text-black py-12 text-center w-full ">
-          <h2 className="text-3xl font-bold mb-8">What have we Achieved</h2>
-          <div className="flex flex-wrap justify-around gap-12 px-10 text-black">
-            <div>
-              <p className="text-sm">Total Properties</p>
-              <p className="text-3xl font-bold">1000+</p>
-            </div>
-            <div>
-              <p className="text-sm">Properties Sold</p>
-              <p className="text-3xl font-bold">100+</p>
-            </div>
-            <div>
-              <p className="text-sm">Total Clients</p>
-              <p className="text-3xl font-bold">60+</p>
-            </div>
-            <div>
-              <p className="text-sm">Total Locations</p>
-              <p className="text-3xl font-bold">25+</p>
-            </div>
-          </div>
-        </section> */}
+
 
         <section className="bg-gradient-to-r from-black via-[#222222] to-black text-white py-12 text-center w-full">
           <h2 className="text-3xl font-bold mb-8">What have we Achieved</h2>
