@@ -217,7 +217,7 @@ const Navbar = () => {
 
             ].map((item) => (
               <Link
-                key={item.href}
+                key={`${item.name}-${item.href}`}
                 href={item.href}
                 className="block px-4 py-3 text-sm text-white hover:bg-[#1a1a1a] hover:text-[#e0b973] transition-all"
               >
