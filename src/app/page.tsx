@@ -6,6 +6,12 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
+
+const SecondaryPropertiesMap = dynamic(() => import("@/component/SecondaryPropertiesMap"), {
+  ssr: false,
+  loading: () => <div className="h-96 bg-gray-800 rounded-lg flex items-center justify-center">Loading map...</div>
+});
 
 const IMAGE_BASE_URL = "https://oss.pixxicrm.com";
 
@@ -379,6 +385,18 @@ export default function Home() {
               <p className="text-sm">Total Locations</p>
               <p className="text-3xl font-bold">25+</p>
             </div>
+          </div>
+        </section>
+
+        {/* Secondary Properties Map */}
+        <section className="bg-black text-white py-16">
+          <div className="max-w-7xl mx-auto px-4">
+            <h2 className="text-4xl font-bold mb-8 text-center">Secondary Market Properties</h2>
+            <p className="text-gray-300 text-center mb-8 max-w-2xl mx-auto">
+              Explore all secondary market properties across Dubai with our interactive map.
+              Click on any marker to view property details.
+            </p>
+            <SecondaryPropertiesMap />
           </div>
         </section>
 

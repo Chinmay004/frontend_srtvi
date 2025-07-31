@@ -211,9 +211,10 @@ const Navbar = () => {
           <div className="absolute top-full left-0 mt-3 w-56 bg-black border border-gray-700 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
             {[
               { name: "Homes for Sale", href: "/services" },
-              { name: "Property Management", href: "/services" },
-              { name: "Mortgage Services", href: "/services" },
-              { name: "Home Valuation", href: "/services" },
+              { name: "Homes for Rent", href: "/services" },
+              { name: "Commercial for Sale", href: "/services" },
+              { name: "Commercial for Rent", href: "/services" },
+              { name: "External Services", href: "/services" },
 
             ].map((item) => (
               <Link
