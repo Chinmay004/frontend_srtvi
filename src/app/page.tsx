@@ -6,6 +6,19 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
+
+const AreaMap = dynamic(() => import("@/component/AreaMap"), {
+  ssr: false,
+  loading: () => (
+    <div className="h-[600px] flex items-center justify-center">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+        <p className="text-gray-600">Loading map...</p>
+      </div>
+    </div>
+  ),
+});
 
 const IMAGE_BASE_URL = "https://oss.pixxicrm.com";
 
@@ -63,6 +76,38 @@ interface RawAPIListing {
   photos?: string[];
 }
 
+interface DeveloperSummary {
+  name: string;
+  properties: number;
+  priceRange: string;
+  propertyTypes: string[];
+  featuredProperty?: {
+    id: string;
+    title: string;
+    price: number;
+    propertyId: string;
+  };
+}
+
+interface AreaData {
+  name: string;
+  coordinates: [number, number];
+  developers: DeveloperSummary[];
+  totalProperties: number;
+  averagePrice: number;
+}
+
+interface FeaturedProperty {
+  id: string;
+  title: string;
+  location: string;
+  latitude: number;
+  longitude: number;
+  developerName: string;
+  price: number;
+  type: string;
+}
+
 
 
 export default function Home() {
@@ -70,6 +115,9 @@ export default function Home() {
   const [inputSearch, setInputSearch] = useState("");
   const [related, setRelated] = useState<Listing[]>([]);
   const [selectedOption, setSelectedOption] = useState<"Buy" | "Rent">("Buy");
+  const [mapAreas, setMapAreas] = useState<AreaData[]>([]);
+  const [featuredProperties, setFeaturedProperties] = useState<FeaturedProperty[]>([]);
+  const [mapLoading, setMapLoading] = useState(true);
 
 
   useEffect(() => {
@@ -107,6 +155,37 @@ export default function Home() {
     };
 
     fetchFeaturedListings();
+  }, []);
+
+  // Fetch map areas data
+  useEffect(() => {
+    const fetchMapData = async () => {
+      try {
+        setMapLoading(true);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/v1/map-areas`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (res.ok) {
+          const data = await res.json();
+          console.log("Map data:", data);
+          setMapAreas(data.areas || []);
+          setFeaturedProperties(data.featuredProperties || []);
+        } else {
+          console.error("Failed to fetch map data");
+          console.error("Response status:", res.status);
+        }
+      } catch (error) {
+        console.error("Error fetching map data:", error);
+      } finally {
+        setMapLoading(false);
+      }
+    };
+
+    fetchMapData();
   }, []);
 
   return (
@@ -457,6 +536,63 @@ export default function Home() {
                 </button>
               </div>
             </Link>
+          </div>
+        </section>
+
+        {/* Interactive Map Section */}
+        <section className="bg-[#0f0f0f] text-white py-16">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-normal mb-4">Explore Our Properties</h2>
+              <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                Discover our portfolio across Dubai with interactive area clusters and featured properties
+              </p>
+            </div>
+
+            <div className="bg-white rounded-xl overflow-hidden shadow-2xl">
+              {mapLoading ? (
+                <div className="h-[600px] flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                    <p className="text-gray-600">Loading map...</p>
+                  </div>
+                </div>
+              ) : mapAreas.length > 0 ? (
+                <AreaMap
+                  areas={mapAreas}
+                  featuredProperties={featuredProperties}
+                  height="600px"
+                />
+              ) : (
+                <div className="h-[600px] flex items-center justify-center">
+                  <div className="text-center">
+                    <p className="text-gray-600 text-lg">No areas available for map display</p>
+                    <p className="text-gray-500 text-sm mt-2">Please check back later</p>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Map Legend */}
+            {/* <div className="mt-8">
+              <h3 className="text-xl font-semibold mb-4 text-center">Map Legend</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+                <div className="flex items-center gap-3 bg-[#1a1a1a] p-4 rounded-lg">
+                  <div className="w-4 h-4 bg-blue-600 rounded"></div>
+                  <div>
+                    <p className="font-medium">Area Clusters</p>
+                    <p className="text-sm text-gray-400">Click to see developer summaries</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 bg-[#1a1a1a] p-4 rounded-lg">
+                  <div className="w-4 h-4 bg-orange-500 rounded-full"></div>
+                  <div>
+                    <p className="font-medium">Featured Properties</p>
+                    <p className="text-sm text-gray-400">Premium properties with developer logos</p>
+                  </div>
+                </div>
+              </div>
+            </div> */}
           </div>
         </section>
       </div>

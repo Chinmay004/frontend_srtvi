@@ -858,7 +858,7 @@ export default function DevelopersPage() {
             console.error("Error fetching developers:", error);
             setLoading(false);
         }
-    }, []);
+    }, [CACHE_DURATION]);
 
     useEffect(() => {
         fetchDevelopers("");
