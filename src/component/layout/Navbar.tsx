@@ -161,12 +161,18 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileExternalServicesOpen, setMobileExternalServicesOpen] = useState(false);
 
-  const handleCloseMenu = () => setMenuOpen(false);
+  const handleCloseMenu = () => {
+    setMenuOpen(false);
+    setMobileServicesOpen(false);
+    setMobileExternalServicesOpen(false);
+  };
 
   return (
     <nav className="bg-transparent shadow-sm px-4 py-4 flex items-center justify-between relative z-50">
@@ -208,22 +214,52 @@ const Navbar = () => {
           </button>
 
           {/* Dropdown Content */}
-          <div className="absolute top-full left-0 mt-3 w-56 bg-black border border-gray-700 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+          <div className="absolute top-full left-0 mt-3 w-64 bg-black border border-gray-700 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
             {[
               { name: "Homes for Sale", href: "/services" },
               { name: "Homes for Rent", href: "/services" },
               { name: "Commercial for Sale", href: "/services" },
               { name: "Commercial for Rent", href: "/services" },
-              { name: "External Services", href: "/services" },
-
+              {
+                name: "Partners",
+                href: "/services",
+                subItems: [
+                  // { name: "Homes for Sale", href: "/services" },
+                  { name: "Property Management", href: "/services" },
+                  { name: "Mortgage Services", href: "/services" },
+                  { name: "Home Valuation", href: "/services" },
+                ]
+              },
             ].map((item) => (
-              <Link
-                key={`${item.name}-${item.href}`}
-                href={item.href}
-                className="block px-4 py-3 text-sm text-white hover:bg-[#1a1a1a] hover:text-[#e0b973] transition-all"
-              >
-                {item.name}
-              </Link>
+              <div key={`${item.name}-${item.href}`} className="relative group/sub">
+                {item.subItems ? (
+                  <>
+                    <div className="flex items-center justify-between px-4 py-3 text-sm text-white hover:bg-[#1a1a1a] hover:text-[#e0b973] transition-all">
+                      <span>{item.name}</span>
+                      <IoIosArrowDown size={12} className="transform group-hover/sub:rotate-180 transition-transform" />
+                    </div>
+                    {/* Sub-dropdown */}
+                    <div className="absolute right-full top-0 w-56 bg-black border border-gray-700 rounded-md shadow-lg opacity-0 invisible group-hover/sub:opacity-100 group-hover/sub:visible transition-all duration-200">
+                      {item.subItems.map((subItem) => (
+                        <Link
+                          key={`${subItem.name}-${subItem.href}`}
+                          href={subItem.href}
+                          className="block px-4 py-3 text-sm text-white hover:bg-[#1a1a1a] hover:text-[#e0b973] transition-all"
+                        >
+                          {subItem.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </>
+                ) : (
+                  <Link
+                    href={item.href}
+                    className="block px-4 py-3 text-sm text-white hover:bg-[#1a1a1a] hover:text-[#e0b973] transition-all"
+                  >
+                    {item.name}
+                  </Link>
+                )}
+              </div>
             ))}
           </div>
         </div>
@@ -246,24 +282,72 @@ const Navbar = () => {
             Featured Properties
           </Link>
 
-          <div className="flex flex-col space-y-2">
-            <span className="text-white font-medium">Our Services</span>
-            {[
-              { name: "Homes for Sale", href: "/services" },
-              { name: "Property Management", href: "/services" },
-              { name: "Mortgage Services", href: "/services" },
-              { name: "Home Valuation", href: "/services" },
+          {/* Our Services Mobile - Expandable */}
+          <div>
+            <button
+              onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+              className="flex items-center justify-between w-full text-left text-white hover:text-[#e0b973] transition-colors"
+            >
+              <span className="font-medium">Our Services</span>
+              {mobileServicesOpen ? <IoIosArrowUp size={16} /> : <IoIosArrowDown size={16} />}
+            </button>
 
-            ].map((item) => (
-              <Link
-                key={`${item.name}-${item.href}`}
-                href={item.href}
-                onClick={handleCloseMenu}
-                className="pl-4 text-sm hover:text-[#e0b973] transition-colors"
-              >
-                {item.name}
-              </Link>
-            ))}
+            {mobileServicesOpen && (
+              <div className="pl-4 mt-2 flex flex-col space-y-2">
+                {[
+                  { name: "Homes for Sale", href: "/services" },
+                  { name: "Homes for Rent", href: "/services" },
+                  { name: "Commercial for Sale", href: "/services" },
+                  { name: "Commercial for Rent", href: "/services" },
+                  {
+                    name: "Partners",
+                    href: "/services",
+                    subItems: [
+                      // { name: "Homes for Sale", href: "/services" },
+                      { name: "Property Management", href: "/services" },
+                      { name: "Mortgage Services", href: "/services" },
+                      { name: "Home Valuation", href: "/services" },
+                    ]
+                  },
+                ].map((item) => (
+                  <div key={`${item.name}-${item.href}`}>
+                    {item.subItems ? (
+                      <div className="pl-4">
+                        <button
+                          onClick={() => setMobileExternalServicesOpen(!mobileExternalServicesOpen)}
+                          className="flex items-center justify-between w-full text-left text-sm text-white font-medium hover:text-[#e0b973] transition-colors"
+                        >
+                          <span>{item.name}</span>
+                          {mobileExternalServicesOpen ? <IoIosArrowUp size={12} /> : <IoIosArrowDown size={12} />}
+                        </button>
+                        {mobileExternalServicesOpen && (
+                          <div className="pl-4 mt-1 flex flex-col space-y-1">
+                            {item.subItems.map((subItem) => (
+                              <Link
+                                key={`${subItem.name}-${subItem.href}`}
+                                href={subItem.href}
+                                onClick={handleCloseMenu}
+                                className="text-xs hover:text-[#e0b973] transition-colors"
+                              >
+                                {subItem.name}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        onClick={handleCloseMenu}
+                        className="text-sm hover:text-[#e0b973] transition-colors"
+                      >
+                        {item.name}
+                      </Link>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           <Link href="/about" onClick={handleCloseMenu} className="hover:text-[#e0b973]">

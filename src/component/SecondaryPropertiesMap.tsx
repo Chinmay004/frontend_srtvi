@@ -6,10 +6,23 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import Link from "next/link";
 
+// Fix for Leaflet default marker icons
+// delete (L.Icon.Default.prototype as any)._getIconUrl;
+delete (L.Icon.Default.prototype as unknown as Record<string, unknown>)._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+    iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png',
+    iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png',
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+});
+
 // Dynamically import the map components to avoid SSR issues
 const MapContainer = dynamic(
     () => import("react-leaflet").then((mod) => mod.MapContainer),
-    { ssr: false }
+    {
+        ssr: false,
+        loading: () => <div className="flex items-center justify-center h-96"><div className="text-white">Loading map...</div></div>
+    }
 );
 const TileLayer = dynamic(
     () => import("react-leaflet").then((mod) => mod.TileLayer),
@@ -60,104 +73,104 @@ interface Developer {
     logoUrl: string;
 }
 
+// Dubai area coordinates mapping for properties without coordinates
+const DUBAI_AREAS: Record<string, [number, number]> = {
+    'Downtown Dubai': [25.1972, 55.2744],
+    'Dubai Marina': [25.0920, 55.1386],
+    'Palm Jumeirah': [25.1122, 55.1386],
+    'Arabian Ranches 3': [25.0553, 55.2203],
+    'Town Square': [25.1189, 55.3788],
+    'Dubai Hills Estate': [25.0553, 55.2203],
+    'Dubai Silicon Oasis': [25.1189, 55.3788],
+    'Business Bay': [25.1867, 55.2744],
+    'Jumeirah Village Circle': [25.0553, 55.2203],
+    'Dubai Sports City': [25.0553, 55.2203],
+    'Dubai Production City': [25.1189, 55.3788],
+    'Dubai International City': [25.1189, 55.3788],
+    'Dubai Creek Harbour': [25.1972, 55.2744],
+    'Dubai South': [25.0553, 55.2203],
+    'Dubai World Central': [25.0553, 55.2203],
+    // Add more common Dubai areas
+    'Jumeirah': [25.1972, 55.2744],
+    'Al Barsha': [25.0920, 55.1386],
+    'Al Quoz': [25.1122, 55.1386],
+    'Al Safa': [25.0553, 55.2203],
+    'Al Wasl': [25.1189, 55.3788],
+    'Umm Suqeim': [25.0553, 55.2203],
+    'Al Sufouh': [25.1189, 55.3788],
+    'Al Manara': [25.1867, 55.2744],
+    'Al Thanya': [25.0553, 55.2203],
+    'Al Hudaiba': [25.0553, 55.2203],
+    'Al Satwa': [25.1189, 55.3788],
+    'Al Karama': [25.1189, 55.3788],
+    'Al Mankhool': [25.1972, 55.2744],
+    'Al Raffa': [25.0553, 55.2203],
+    'Al Jafiliya': [25.0553, 55.2203],
+    'Al Muteena': [25.1189, 55.3788],
+    'Al Twar': [25.1972, 55.2744],
+    'Al Nahda': [25.0553, 55.2203],
+    'Al Warqa': [25.1189, 55.3788],
+    'Al Rashidiya': [25.1189, 55.3788],
+    'Al Lisaili': [25.1972, 55.2744],
+    'Al Aweer': [25.0553, 55.2203],
+    'Al Khawaneej': [25.0553, 55.2203],
+    'Al Mizhar': [25.1189, 55.3788],
+    'Al Barsha 1': [25.1189, 55.3788],
+    'Al Barsha 2': [25.1972, 55.2744],
+    'Al Barsha 3': [25.0553, 55.2203],
+    'Al Barsha South': [25.0553, 55.2203],
+    'Al Barsha Heights': [25.1189, 55.3788],
+    'Emirates Hills': [25.1189, 55.3788],
+    'Springs': [25.1972, 55.2744],
+    'Meadows': [25.0553, 55.2203],
+    'Lakes': [25.0553, 55.2203],
+    'Gardens': [25.1189, 55.3788],
+    'Greens': [25.1189, 55.3788],
+    'Views': [25.1972, 55.2744],
+    'Heights': [25.0553, 55.2203],
+    'Marina': [25.0920, 55.1386],
+    'Beach': [25.1122, 55.1386],
+    'Hills': [25.0553, 55.2203],
+    'Estate': [25.1189, 55.3788],
+    'Village': [25.1867, 55.2744],
+    'Circle': [25.0553, 55.2203],
+    'City': [25.0553, 55.2203],
+    'District': [25.1189, 55.3788],
+    'Area': [25.1189, 55.3788],
+    'Zone': [25.1972, 55.2744],
+    'Community': [25.0553, 55.2203],
+    'Development': [25.0553, 55.2203],
+    'Project': [25.1189, 55.3788],
+    'Residence': [25.1189, 55.3788],
+    'Tower': [25.1972, 55.2744],
+    'Building': [25.0553, 55.2203],
+    'Complex': [25.0553, 55.2203],
+    'Plaza': [25.1189, 55.3788],
+    'Center': [25.1189, 55.3788],
+    'Mall': [25.1972, 55.2744],
+    'Street': [25.0553, 55.2203],
+    'Road': [25.0553, 55.2203],
+    'Avenue': [25.1189, 55.3788],
+    'Boulevard': [25.1189, 55.3788],
+    'Drive': [25.1972, 55.2744],
+    'Lane': [25.0553, 55.2203],
+    'Way': [25.0553, 55.2203],
+    'Square': [25.1189, 55.3788],
+    'Park': [25.1189, 55.3788],
+    'Garden': [25.1972, 55.2744],
+    'View': [25.0553, 55.2203],
+    'Point': [25.0553, 55.2203],
+    'Bay': [25.1189, 55.3788],
+    'Island': [25.0553, 55.2203],
+    'Palm': [25.1122, 55.1386],
+    'Dubai': [25.2048, 55.2708],
+};
+
 export default function SecondaryPropertiesMap() {
     const [properties, setProperties] = useState<Property[]>([]);
     const [loading, setLoading] = useState(true);
     const [, setDevelopers] = useState<Developer[]>([]);
     const [developerLogos, setDeveloperLogos] = useState<Record<string, string>>({});
-
-    // Dubai area coordinates mapping for properties without coordinates
-    const DUBAI_AREAS: Record<string, [number, number]> = {
-        'Downtown Dubai': [25.1972, 55.2744],
-        'Dubai Marina': [25.0920, 55.1386],
-        'Palm Jumeirah': [25.1122, 55.1386],
-        'Arabian Ranches 3': [25.0553, 55.2203],
-        'Town Square': [25.1189, 55.3788],
-        'Dubai Hills Estate': [25.0553, 55.2203],
-        'Dubai Silicon Oasis': [25.1189, 55.3788],
-        'Business Bay': [25.1867, 55.2744],
-        'Jumeirah Village Circle': [25.0553, 55.2203],
-        'Dubai Sports City': [25.0553, 55.2203],
-        'Dubai Production City': [25.1189, 55.3788],
-        'Dubai International City': [25.1189, 55.3788],
-        'Dubai Creek Harbour': [25.1972, 55.2744],
-        'Dubai South': [25.0553, 55.2203],
-        'Dubai World Central': [25.0553, 55.2203],
-        // Add more common Dubai areas
-        'Jumeirah': [25.1972, 55.2744],
-        'Al Barsha': [25.0920, 55.1386],
-        'Al Quoz': [25.1122, 55.1386],
-        'Al Safa': [25.0553, 55.2203],
-        'Al Wasl': [25.1189, 55.3788],
-        'Umm Suqeim': [25.0553, 55.2203],
-        'Al Sufouh': [25.1189, 55.3788],
-        'Al Manara': [25.1867, 55.2744],
-        'Al Thanya': [25.0553, 55.2203],
-        'Al Hudaiba': [25.0553, 55.2203],
-        'Al Satwa': [25.1189, 55.3788],
-        'Al Karama': [25.1189, 55.3788],
-        'Al Mankhool': [25.1972, 55.2744],
-        'Al Raffa': [25.0553, 55.2203],
-        'Al Jafiliya': [25.0553, 55.2203],
-        'Al Muteena': [25.1189, 55.3788],
-        'Al Twar': [25.1972, 55.2744],
-        'Al Nahda': [25.0553, 55.2203],
-        'Al Warqa': [25.1189, 55.3788],
-        'Al Rashidiya': [25.1189, 55.3788],
-        'Al Lisaili': [25.1972, 55.2744],
-        'Al Aweer': [25.0553, 55.2203],
-        'Al Khawaneej': [25.0553, 55.2203],
-        'Al Mizhar': [25.1189, 55.3788],
-        'Al Barsha 1': [25.1189, 55.3788],
-        'Al Barsha 2': [25.1972, 55.2744],
-        'Al Barsha 3': [25.0553, 55.2203],
-        'Al Barsha South': [25.0553, 55.2203],
-        'Al Barsha Heights': [25.1189, 55.3788],
-        'Emirates Hills': [25.1189, 55.3788],
-        'Springs': [25.1972, 55.2744],
-        'Meadows': [25.0553, 55.2203],
-        'Lakes': [25.0553, 55.2203],
-        'Gardens': [25.1189, 55.3788],
-        'Greens': [25.1189, 55.3788],
-        'Views': [25.1972, 55.2744],
-        'Heights': [25.0553, 55.2203],
-        'Marina': [25.0920, 55.1386],
-        'Beach': [25.1122, 55.1386],
-        'Hills': [25.0553, 55.2203],
-        'Estate': [25.1189, 55.3788],
-        'Village': [25.1867, 55.2744],
-        'Circle': [25.0553, 55.2203],
-        'City': [25.0553, 55.2203],
-        'District': [25.1189, 55.3788],
-        'Area': [25.1189, 55.3788],
-        'Zone': [25.1972, 55.2744],
-        'Community': [25.0553, 55.2203],
-        'Development': [25.0553, 55.2203],
-        'Project': [25.1189, 55.3788],
-        'Residence': [25.1189, 55.3788],
-        'Tower': [25.1972, 55.2744],
-        'Building': [25.0553, 55.2203],
-        'Complex': [25.0553, 55.2203],
-        'Plaza': [25.1189, 55.3788],
-        'Center': [25.1189, 55.3788],
-        'Mall': [25.1972, 55.2744],
-        'Street': [25.0553, 55.2203],
-        'Road': [25.0553, 55.2203],
-        'Avenue': [25.1189, 55.3788],
-        'Boulevard': [25.1189, 55.3788],
-        'Drive': [25.1972, 55.2744],
-        'Lane': [25.0553, 55.2203],
-        'Way': [25.0553, 55.2203],
-        'Square': [25.1189, 55.3788],
-        'Park': [25.1189, 55.3788],
-        'Garden': [25.1972, 55.2744],
-        'View': [25.0553, 55.2203],
-        'Point': [25.0553, 55.2203],
-        'Bay': [25.1189, 55.3788],
-        'Island': [25.0553, 55.2203],
-        'Palm': [25.1122, 55.1386],
-        'Dubai': [25.2048, 55.2708],
-    };
 
     // Fetch developers and their logos
     useEffect(() => {
@@ -198,7 +211,7 @@ export default function SecondaryPropertiesMap() {
         const fetchSecondaryProperties = async () => {
             try {
                 setLoading(true);
-                const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/v1/listings/pixxi`, {
+                const res = await fetch(`https://sartawi-properties-backend.onrender.com/api/v1/listings/pixxi`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -272,7 +285,7 @@ export default function SecondaryPropertiesMap() {
         };
 
         fetchSecondaryProperties();
-    }, [DUBAI_AREAS]);
+    }, []);
 
     // Function to capitalize first letter of each word
     const capitalizeWords = (str: string) => {
@@ -402,71 +415,85 @@ export default function SecondaryPropertiesMap() {
     const centerLat = properties.reduce((sum, prop) => sum + prop.latitude, 0) / properties.length;
     const centerLng = properties.reduce((sum, prop) => sum + prop.longitude, 0) / properties.length;
 
+    // Debug logging
+    console.log("MapTiler API Key:", process.env.NEXT_PUBLIC_MAPTILER_API_KEY ? "Present" : "Missing");
+    console.log("Properties count:", properties.length);
+    console.log("Center coordinates:", [centerLat, centerLng]);
+
     return (
         <div className="w-full h-[600px] rounded-lg overflow-hidden">
-            <MapContainer
-                center={[centerLat, centerLng]}
-                zoom={10}
-                style={{ height: "100%", width: "100%" }}
-                className="rounded-lg"
-                scrollWheelZoom={true}
-            >
-                <TileLayer
-                    attribution='&copy; <a href="https://www.maptiler.com/">MapTiler</a>'
-                    url={`https://api.maptiler.com/maps/streets-dark/{z}/{x}/{y}.png?key=${process.env.NEXT_PUBLIC_MAPTILER_API_KEY}`}
-                />
+            {process.env.NEXT_PUBLIC_MAPTILER_API_KEY ? (
+                <MapContainer
+                    center={[centerLat, centerLng]}
+                    zoom={10}
+                    style={{ height: "100%", width: "100%" }}
+                    className="rounded-lg"
+                    scrollWheelZoom={true}
+                >
+                    <TileLayer
+                        attribution='&copy; <a href="https://www.maptiler.com/">MapTiler</a>'
+                        url={`https://api.maptiler.com/maps/streets-dark/{z}/{x}/{y}.png?key=${process.env.NEXT_PUBLIC_MAPTILER_API_KEY}`}
+                    />
 
-                {properties.map((property) => (
-                    <Marker
-                        key={property.id}
-                        position={[property.latitude, property.longitude]}
-                        icon={createPropertyIcon(property)}
-                    >
-                        <Popup>
-                            <Link href={`/listings/${property.id}`}>
-                                <div
-                                    className="property-popup cursor-pointer hover:opacity-90 transition-opacity"
-                                    style={{
-                                        minWidth: "250px",
-                                        minHeight: "150px",
-                                        backgroundImage: `url(${property.images?.[0] || '/fallback.jpg'})`,
-                                        backgroundSize: 'cover',
-                                        backgroundPosition: 'center',
-                                        backgroundRepeat: 'no-repeat',
-                                        position: 'relative',
-                                        borderRadius: '8px',
-                                        overflow: 'hidden',
-                                        border: '1px solid #333'
-                                    }}
-                                >
-                                    {/* Dark overlay for text readability */}
-                                    <div style={{
-                                        position: 'absolute',
-                                        top: 0,
-                                        left: 0,
-                                        right: 0,
-                                        bottom: 0,
-                                        background: 'rgba(0, 0, 0, 0.7)',
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        justifyContent: 'flex-end',
-                                        padding: '16px'
-                                    }}>
-                                        <div className="text-white">
-                                            <p className="text-sm font-semibold text-gray-300 mb-2">
-                                                {capitalizeWords(property.title)}
-                                            </p>
-                                            <p className="text-xl font-bold text-white">
-                                                AED {property.price.toLocaleString()}
-                                            </p>
+                    {properties.map((property) => (
+                        <Marker
+                            key={property.id}
+                            position={[property.latitude, property.longitude]}
+                            icon={createPropertyIcon(property)}
+                        >
+                            <Popup>
+                                <Link href={`/listings/${property.id}`}>
+                                    <div
+                                        className="property-popup cursor-pointer hover:opacity-90 transition-opacity"
+                                        style={{
+                                            minWidth: "250px",
+                                            minHeight: "150px",
+                                            backgroundImage: `url(${property.images?.[0] || '/fallback.jpg'})`,
+                                            backgroundSize: 'cover',
+                                            backgroundPosition: 'center',
+                                            backgroundRepeat: 'no-repeat',
+                                            position: 'relative',
+                                            borderRadius: '8px',
+                                            overflow: 'hidden',
+                                            border: '1px solid #333'
+                                        }}
+                                    >
+                                        {/* Dark overlay for text readability */}
+                                        <div style={{
+                                            position: 'absolute',
+                                            top: 0,
+                                            left: 0,
+                                            right: 0,
+                                            bottom: 0,
+                                            background: 'rgba(0, 0, 0, 0.7)',
+                                            display: 'flex',
+                                            flexDirection: 'column',
+                                            justifyContent: 'flex-end',
+                                            padding: '16px'
+                                        }}>
+                                            <div className="text-white">
+                                                <p className="text-sm font-semibold text-gray-300 mb-2">
+                                                    {capitalizeWords(property.title)}
+                                                </p>
+                                                <p className="text-xl font-bold text-white">
+                                                    AED {property.price.toLocaleString()}
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </Link>
-                        </Popup>
-                    </Marker>
-                ))}
-            </MapContainer>
+                                </Link>
+                            </Popup>
+                        </Marker>
+                    ))}
+                </MapContainer>
+            ) : (
+                <div className="flex items-center justify-center h-full bg-gray-800 rounded-lg">
+                    <div className="text-white text-center">
+                        <p className="text-lg font-semibold mb-2">Map Configuration Error</p>
+                        <p className="text-sm">MapTiler API key is missing. Please check your environment configuration.</p>
+                    </div>
+                </div>
+            )}
         </div>
     );
 } 
