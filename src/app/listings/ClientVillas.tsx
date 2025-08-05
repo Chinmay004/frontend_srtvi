@@ -89,7 +89,7 @@ export default function ClientVillas() {
     };
 
     fetchListings();
-  }, [page, search,marketType,listingType]);
+  }, [page, search, marketType, listingType]);
 
   const totalPages = Math.ceil(totalCount / listingsPerPage);
 
@@ -115,7 +115,7 @@ export default function ClientVillas() {
           className="object-cover"
         />
         <div className="absolute inset-0 bg-black/70 z-10 flex flex-col justify-center items-center text-center px-4">
-         <h1 className="text-4xl sm:text-5xl font-bold mb-2">
+          <h1 className="text-4xl sm:text-5xl font-bold mb-2">
             Properties in{" "}
             <span className="text-[#e0b973]">
               {search ? toTitleCase(search) : "Dubai"}
@@ -128,69 +128,69 @@ export default function ClientVillas() {
       </div>
 
 
-<div className="max-w-7xl mx-auto px-4 py-8 w-full">
-  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 w-full">
+      <div className="max-w-7xl mx-auto px-4 py-8 w-full">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 w-full">
 
-    {/* Search Bar */}
-    <div className="flex items-center gap-2 border border-gray-600 rounded-4xl px-3 py-2 w-full lg:w-1/2 sm:flex-1 bg-[#161616]">
-      <FiSearch />
-      <input
-        type="text"
-        placeholder="Search for a Property by Name"
-        className="focus:outline-none w-full text-[#bebebe] bg-[#161616]"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
-    </div>
+          {/* Search Bar */}
+          <div className="flex items-center gap-2 border border-gray-600 rounded-4xl px-3 py-2 w-full lg:w-1/2 sm:flex-1 bg-[#161616]">
+            <FiSearch />
+            <input
+              type="text"
+              placeholder="Search for a Property by Name"
+              className="focus:outline-none w-full text-[#bebebe] bg-[#161616]"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </div>
 
-    {/* Toggles Container */}
-    <div className="w-full sm:w-auto">
-      <div className="flex flex-row flex-wrap gap-3 justify-between sm:justify-start w-full">
+          {/* Toggles Container */}
+          <div className="w-full sm:w-auto">
+            <div className="flex flex-row flex-wrap gap-3 justify-between sm:justify-start w-full">
 
-        {/* Buy / Rent Toggle */}
-        <div className="flex items-center bg-[#161616] rounded-full p-[2px] flex-1 min-w-[48%] sm:min-w-fit sm:w-auto">
-          <button
-            className={`${listingType === "SELL" ? "bg-white text-black font-semibold" : "text-gray-300 font-light"} text-xs md:text-sm px-4 py-1.5 rounded-full transition-all w-1/2 border border-gray-500`}
-            onClick={() =>
-              setListingType(prev => (prev === "SELL" ? undefined : "SELL"))
-            }
-          >
-            Buy
-          </button>
-          <button
-            className={`${listingType === "RENT" ? "bg-white text-black font-semibold" : "text-gray-300 font-light"} text-xs md:text-sm px-4 py-1.5 rounded-full transition-all w-1/2 border border-gray-500`}
-            onClick={() =>
-              setListingType(prev => (prev === "RENT" ? undefined : "RENT"))
-            }
-          >
-            Rent
-          </button>
+              {/* Buy / Rent Toggle */}
+              <div className="flex items-center bg-[#161616] rounded-full p-[2px] flex-1 min-w-[48%] sm:min-w-fit sm:w-auto">
+                <button
+                  className={`${listingType === "SELL" ? "bg-white text-black font-semibold" : "text-gray-300 font-light"} text-xs md:text-sm px-4 py-1.5 rounded-full transition-all w-1/2 border border-gray-500`}
+                  onClick={() =>
+                    setListingType(prev => (prev === "SELL" ? undefined : "SELL"))
+                  }
+                >
+                  Buy
+                </button>
+                <button
+                  className={`${listingType === "RENT" ? "bg-white text-black font-semibold" : "text-gray-300 font-light"} text-xs md:text-sm px-4 py-1.5 rounded-full transition-all w-1/2 border border-gray-500`}
+                  onClick={() =>
+                    setListingType(prev => (prev === "RENT" ? undefined : "RENT"))
+                  }
+                >
+                  Rent
+                </button>
+              </div>
+
+              {/* Off-Plan / Secondary Toggle */}
+              <div className="flex items-center bg-[#161616] rounded-full p-[2px] flex-1 min-w-[48%] sm:min-w-fit sm:w-auto">
+                <button
+                  className={`${marketType === "offPlan" ? "bg-white text-black font-semibold" : "text-gray-300 font-light"} text-xs md:text-sm px-4 py-1.5 rounded-full transition-all w-1/2 border border-gray-500`}
+                  onClick={() =>
+                    setMarketType(prev => (prev === "offPlan" ? undefined : "offPlan"))
+                  }
+                >
+                  Off-Plan
+                </button>
+                <button
+                  className={`${marketType === "secondary" ? "bg-white text-black font-semibold" : "text-gray-300 font-light"} text-xs md:text-sm px-4 py-1.5 rounded-full transition-all w-1/2 border border-gray-500`}
+                  onClick={() =>
+                    setMarketType(prev => (prev === "secondary" ? undefined : "secondary"))
+                  }
+                >
+                  Secondary
+                </button>
+              </div>
+
+            </div>
+          </div>
         </div>
-
-        {/* Off-Plan / Secondary Toggle */}
-        <div className="flex items-center bg-[#161616] rounded-full p-[2px] flex-1 min-w-[48%] sm:min-w-fit sm:w-auto">
-          <button
-            className={`${marketType === "offPlan" ? "bg-white text-black font-semibold" : "text-gray-300 font-light"} text-xs md:text-sm px-4 py-1.5 rounded-full transition-all w-1/2 border border-gray-500`}
-            onClick={() =>
-              setMarketType(prev => (prev === "offPlan" ? undefined : "offPlan"))
-            }
-          >
-            Off-Plan
-          </button>
-          <button
-            className={`${marketType === "secondary" ? "bg-white text-black font-semibold" : "text-gray-300 font-light"} text-xs md:text-sm px-4 py-1.5 rounded-full transition-all w-1/2 border border-gray-500`}
-            onClick={() =>
-              setMarketType(prev => (prev === "secondary" ? undefined : "secondary"))
-            }
-          >
-            Secondary
-          </button>
-        </div>
-
       </div>
-    </div>
-  </div>
-</div>
 
 
 
@@ -212,7 +212,7 @@ export default function ClientVillas() {
                   unoptimized
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
-                    if (target.src !== window.location.origin + "/fallback.jpg") {
+                    if (typeof window !== 'undefined' && target.src !== window.location.origin + "/fallback.jpg") {
                       target.src = "/fallback.jpg";
                     }
                   }}

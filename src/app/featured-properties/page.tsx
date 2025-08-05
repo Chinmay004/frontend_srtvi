@@ -1,11 +1,20 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import { FiSearch } from 'react-icons/fi';
+import { FiSearch, FiX } from 'react-icons/fi';
 import Navbar from "@/component/layout/Navbar";
 import Footer from "@/component/layout/Footer";
 import Link from "next/link";
 import Image from "next/image";
+// import SecondaryPropertiesMap from "@/component/SecondaryPropertiesMap";
+
+import dynamic from "next/dynamic";
+
+
+const SecondaryPropertiesMap = dynamic(
+    () => import("@/component/SecondaryPropertiesMap"),
+    { ssr: false, loading: () => <div style={{ height: 400, color: "white" }}>Loading map...</div> }
+);
 
 interface Listing {
     id: string;
@@ -39,6 +48,7 @@ export default function SecondaryPropertiesPage() {
     const [listings, setListings] = useState<Listing[]>([]);
     const [page, setPage] = useState(1);
     const [totalCount, setTotalCount] = useState(0);
+    const [showMapPopup, setShowMapPopup] = useState(false);
     const listingsPerPage = 12;
 
     useEffect(() => {
@@ -131,6 +141,17 @@ export default function SecondaryPropertiesPage() {
                             onChange={(e) => setSearch(e.target.value)}
                         />
                     </div>
+
+                    {/* Show on Map Button */}
+                    <button
+                        onClick={() => setShowMapPopup(true)}
+                        className="px-6 py-2 bg-[#e0b973] hover:bg-[#d4a85f] text-black font-semibold rounded-lg transition-colors duration-200 flex items-center gap-2"
+                    >
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-1.447-.894L15 4m0 13V4m-6 3l6-3" />
+                        </svg>
+                        Show on Map
+                    </button>
                 </div>
             </div>
 
@@ -144,19 +165,27 @@ export default function SecondaryPropertiesPage() {
                     >
                         <div className="bg-[#141414] rounded-lg overflow-hidden">
                             <div className="w-full h-[192px] relative rounded-xl overflow-hidden">
+                                {/* <Image
+                                    src={property.images?.[0] || "/fallback.jpg"}
+                                    alt={property.title || "Property image"}
+                                    fill
+                                    unoptimized
+                                    // onError={(e) => {
+                                    //     const target = e.target as HTMLImageElement;
+                                    //     if (typeof window !== 'undefined' && target.src !== window.location.origin + "/fallback.jpg") {
+                                    //         target.src = "/fallback.jpg";
+                                    //     }
+                                    // }}
+                                    className="object-cover"
+                                /> */}
                                 <Image
                                     src={property.images?.[0] || "/fallback.jpg"}
                                     alt={property.title || "Property image"}
                                     fill
                                     unoptimized
-                                    onError={(e) => {
-                                        const target = e.target as HTMLImageElement;
-                                        if (target.src !== window.location.origin + "/fallback.jpg") {
-                                            target.src = "/fallback.jpg";
-                                        }
-                                    }}
                                     className="object-cover"
                                 />
+
                             </div>
 
                             <div className="p-4">
@@ -213,6 +242,29 @@ export default function SecondaryPropertiesPage() {
                     >
                         Next
                     </button>
+                </div>
+            )}
+
+            {/* Map Popup Modal */}
+            {showMapPopup && (
+                <div className="fixed inset-0 bg-black bg-opacity-75 z-50 flex items-center justify-center p-4">
+                    <div className="bg-black border border-gray-700 rounded-lg w-full max-w-6xl h-[80vh] relative">
+                        {/* Header */}
+                        <div className="flex items-center justify-between p-4 border-b border-gray-700">
+                            <h2 className="text-2xl font-bold text-white">Featured Properties</h2>
+                            <button
+                                onClick={() => setShowMapPopup(false)}
+                                className="text-gray-400 hover:text-white transition-colors"
+                            >
+                                <FiX size={24} />
+                            </button>
+                        </div>
+
+                        {/* Map Container */}
+                        <div className="p-4 h-full">
+                            <SecondaryPropertiesMap />
+                        </div>
+                    </div>
                 </div>
             )}
 

@@ -227,59 +227,9 @@ export default function AboutPage() {
         >
           {/* Overlay */}
           <div className="absolute inset-0 bg-black/70 z-0" />
-
-          {/* Centered Contact Form */}
-          {/* <div className="relative z-10 flex items-center justify-center h-full px-4">
-            <div className="bg-opacity-80 p-8 rounded-md w-full max-w-xl">
-              <h2 className="text-center text-3xl mb-6">Contact Us</h2>
-              <form className="space-y-4">
-                <input
-                  type="text"
-                  placeholder="Enter Full Name"
-                  className="w-full bg-[#262626] rounded px-4 py-2 text-sm text-[#606060]"
-                />
-                <select className="w-full bg-[#262626] rounded px-4 py-2 text-sm text-[#606060]">
-                  <option>What are you Looking for</option>
-                  <option>Buy</option>
-                  <option>Rent</option>
-                </select>
-                <select className="w-full bg-[#262626] rounded px-4 py-2 text-sm text-[#606060]">
-                  <option>Which Area are you Looking for</option>
-                  <option>Palm Jumeriah</option>
-                  <option>Arabian Ranches</option>
-                  <option>Business Bay</option>
-                  <option>Al Barsha</option>
-                  <option>Al Barari</option>
-                  <option>Dubai Marina</option>
-                  <option>Jumeirah Village Circle (JVC)</option>
-                  <option>Al Furjan</option>
-                  <option>Downtown Dubai</option>
-                  <option>Al Maktoum International Airport</option>
-                  <option>Emaar South</option>
-                  <option>Al Jaddaf</option>
-                  <option>Deira</option>
-                  <option>Al Wasl</option>
-                  <option>Bluewaters Island</option>
-
-                </select>
-                <textarea
-                  placeholder="Any Other Comments"
-                  className="w-full bg-[#262626] text-[#606060] border border-[#262626] h-22 rounded px-4 py-2 text-sm"
-                />
-                <button
-                  type="submit"
-                  className="w-full bg-white text-black py-2 rounded font-semibold"
-                >
-                  Submit
-                </button>
-              </form>
-            </div>
-          </div> */}
           <div className="relative z-10 flex items-center justify-center h-full px-4">
             <ContactForm />
-
           </div>
-
         </section>
       </main>
       <Footer />

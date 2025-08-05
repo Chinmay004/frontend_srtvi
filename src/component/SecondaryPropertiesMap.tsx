@@ -367,7 +367,6 @@ export default function SecondaryPropertiesMap() {
                   object-fit: contain;
                   border-radius: 50%;
                 "
-                onerror="this.src='/white-logo.svg'"
               />
                          ` : `
                <div style="
@@ -398,7 +397,7 @@ export default function SecondaryPropertiesMap() {
     if (loading) {
         return (
             <div className="flex items-center justify-center h-96">
-                <div className="text-white">Loading secondary properties...</div>
+                <div className="text-white">Loading Featured Properties...</div>
             </div>
         );
     }
@@ -406,7 +405,7 @@ export default function SecondaryPropertiesMap() {
     if (properties.length === 0) {
         return (
             <div className="flex items-center justify-center h-96">
-                <div className="text-white">No secondary properties available</div>
+                <div className="text-white">No Featured properties available</div>
             </div>
         );
     }
@@ -425,7 +424,7 @@ export default function SecondaryPropertiesMap() {
             {process.env.NEXT_PUBLIC_MAPTILER_API_KEY ? (
                 <MapContainer
                     center={[centerLat, centerLng]}
-                    zoom={10}
+                    zoom={11}
                     style={{ height: "100%", width: "100%" }}
                     className="rounded-lg"
                     scrollWheelZoom={true}

@@ -391,10 +391,9 @@ export default function Home() {
         {/* Secondary Properties Map */}
         <section className="bg-black text-white py-16">
           <div className="max-w-7xl mx-auto px-4">
-            <h2 className="text-4xl font-bold mb-8 text-center">Secondary Market Properties</h2>
+            <h2 className="text-4xl font-bold mb-8 text-center">Featured Properties</h2>
             <p className="text-gray-300 text-center mb-8 max-w-2xl mx-auto">
-              Explore all secondary market properties across Dubai with our interactive map.
-              Click on any marker to view property details.
+              Explore our properties across Dubai in Map and click to learn more about projects.
             </p>
             <SecondaryPropertiesMap />
           </div>
