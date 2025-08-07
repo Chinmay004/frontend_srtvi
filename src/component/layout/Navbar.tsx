@@ -20,6 +20,14 @@ const Navbar = () => {
     // setMobileExternalServicesOpen(false);
   };
 
+  const services = [
+    { name: "Homes for Sale", href: "/services/homes-for-sale" },
+    { name: "Homes for Rent", href: "/services/homes-for-rent" },
+    { name: "Commercial for Sale", href: "/services/commercial-for-sale" },
+    { name: "Commercial for Rent", href: "/services/commercial-for-rent" },
+    { name: "Partner Services", href: "/services/partner-services" },
+  ];
+
   return (
     <nav className="bg-transparent shadow-sm px-4 py-4 flex items-center justify-between relative z-50">
       {/* Logo */}
@@ -61,13 +69,7 @@ const Navbar = () => {
 
           {/* Dropdown Content */}
           <div className="absolute top-full left-0 mt-3 w-64 bg-black border border-gray-700 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-            {[
-              { name: "Homes for Sale", href: "/services" },
-              { name: "Homes for Rent", href: "/services" },
-              { name: "Commercial for Sale", href: "/services" },
-              { name: "Commercial for Rent", href: "/services" },
-              { name: "Partner Services", href: "/services" },
-            ].map((item) => (
+            {services.map((item) => (
               <Link
                 key={`${item.name}-${item.href}`}
                 href={item.href}
@@ -109,13 +111,7 @@ const Navbar = () => {
 
             {mobileServicesOpen && (
               <div className="pl-4 mt-2 flex flex-col space-y-2">
-                {[
-                  { name: "Homes for Sale", href: "/services" },
-                  { name: "Homes for Rent", href: "/services" },
-                  { name: "Commercial for Sale", href: "/services" },
-                  { name: "Commercial for Rent", href: "/services" },
-                  { name: "Partner Services", href: "/services" },
-                ].map((item) => (
+                {services.map((item) => (
                   <Link
                     key={`${item.name}-${item.href}`}
                     href={item.href}

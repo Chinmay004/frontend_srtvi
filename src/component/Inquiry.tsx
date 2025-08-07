@@ -10,7 +10,9 @@ interface InquiryProps {
 export default function Inquiry({ onClose }: InquiryProps) {
     const [name, setName] = useState("");
     const [preferredPropertyType, setPreferredPropertyType] = useState("");
+    const [otherPropertyType, setOtherPropertyType] = useState("");
     const [budget, setBudget] = useState("");
+    const [otherBudget, setOtherBudget] = useState("");
     const [purchaseTimeline, setPurchaseTimeline] = useState("");
     const [phone, setPhone] = useState("");
     const [preferredArea, setPreferredArea] = useState("");
@@ -34,7 +36,19 @@ export default function Inquiry({ onClose }: InquiryProps) {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        // Validate phone number is required
+        if (!phone.trim()) {
+            setModalMessage("Phone number is required. Please enter your phone number.");
+            setModalError(true);
+            return;
+        }
+
         setIsSubmitting(true);
+
+        // Use the "Other" text input values if "Other" is selected
+        const finalPropertyType = preferredPropertyType === "Other" ? otherPropertyType : preferredPropertyType;
+        const finalBudget = budget === "Other" ? otherBudget : budget;
 
         const payload: Payload = {
             formId: "82979d81-f15e-4471-849a-ecb0ff41945e",
@@ -42,7 +56,7 @@ export default function Inquiry({ onClose }: InquiryProps) {
             phone,
             email,
             extraData: {
-                question: `${name} with phone No. ${phone} and email ${email} is interested in ${preferredPropertyType} property with budget ${budget}, planning to purchase ${purchaseTimeline} in ${preferredArea}`,
+                question: `${name} with phone No. ${phone} and email ${email} is interested in ${finalPropertyType} property with budget ${finalBudget}, planning to purchase ${purchaseTimeline} in ${preferredArea}`,
             },
         };
 
@@ -64,7 +78,9 @@ export default function Inquiry({ onClose }: InquiryProps) {
             // Reset form
             setName("");
             setPreferredPropertyType("");
+            setOtherPropertyType("");
             setBudget("");
+            setOtherBudget("");
             setPurchaseTimeline("");
             setPhone("");
             setPreferredArea("");
@@ -99,40 +115,62 @@ export default function Inquiry({ onClose }: InquiryProps) {
                         className="w-full bg-[#262626] rounded px-4 py-2 text-sm text-[#d0d0d0] placeholder-[#606060] focus:outline-none focus:ring-2 focus:ring-[#444]"
                         value={name}
                         onChange={(e) => setName(e.target.value)}
-                        required
                     />
 
-                    <select
-                        className="w-full bg-[#262626] rounded px-4 py-2 text-sm text-[#d0d0d0] placeholder-[#606060] focus:outline-none focus:ring-2 focus:ring-[#444]"
-                        value={preferredPropertyType}
-                        onChange={(e) => setPreferredPropertyType(e.target.value)}
-                        required
-                    >
-                        <option value="">Preferred Property Type</option>
-                        <option value="1 Bedroom">1 Bedroom</option>
-                        <option value="2 Bedrooms">2 Bedrooms</option>
-                        <option value="3 Bedrooms">3 Bedrooms</option>
-                        <option value="Other">Other</option>
-                    </select>
+                    <div className="space-y-2">
+                        <select
+                            className="w-full bg-[#262626] rounded px-4 py-2 text-sm text-[#d0d0d0] placeholder-[#606060] focus:outline-none focus:ring-2 focus:ring-[#444]"
+                            value={preferredPropertyType}
+                            onChange={(e) => setPreferredPropertyType(e.target.value)}
+                        >
+                            <option value="">Preferred Property Type</option>
+                            <option value="1 Bedroom">1 Bedroom</option>
+                            <option value="2 Bedrooms">2 Bedrooms</option>
+                            <option value="3 Bedrooms">3 Bedrooms</option>
+                            <option value="Other">Other</option>
+                        </select>
 
-                    <select
-                        className="w-full bg-[#262626] rounded px-4 py-2 text-sm text-[#d0d0d0] placeholder-[#606060] focus:outline-none focus:ring-2 focus:ring-[#444]"
-                        value={budget}
-                        onChange={(e) => setBudget(e.target.value)}
-                        required
-                    >
-                        <option value="">Budget</option>
-                        <option value="AED 1M – 1.5M">AED 1M – 1.5M</option>
-                        <option value="AED 1.5M – 2M">AED 1.5M – 2M</option>
-                        <option value="AED 2.5M+">AED 2.5M+</option>
-                        <option value="Other">Other</option>
-                    </select>
+                        {preferredPropertyType === "Other" && (
+                            <input
+                                type="text"
+                                placeholder="Please specify your preferred property type"
+                                className="w-full bg-[#262626] rounded px-4 py-2 text-sm text-[#d0d0d0] placeholder-[#606060] focus:outline-none focus:ring-2 focus:ring-[#444]"
+                                value={otherPropertyType}
+                                onChange={(e) => setOtherPropertyType(e.target.value)}
+                                required={preferredPropertyType === "Other"}
+                            />
+                        )}
+                    </div>
+
+                    <div className="space-y-2">
+                        <select
+                            className="w-full bg-[#262626] rounded px-4 py-2 text-sm text-[#d0d0d0] placeholder-[#606060] focus:outline-none focus:ring-2 focus:ring-[#444]"
+                            value={budget}
+                            onChange={(e) => setBudget(e.target.value)}
+                        >
+                            <option value="">Budget</option>
+                            <option value="AED 1M – 1.5M">AED 1M – 1.5M</option>
+                            <option value="AED 1.5M – 2M">AED 1.5M – 2M</option>
+                            <option value="AED 2.5M+">AED 2.5M+</option>
+                            <option value="Other">Other</option>
+                        </select>
+
+                        {budget === "Other" && (
+                            <input
+                                type="text"
+                                placeholder="Please specify your budget"
+                                className="w-full bg-[#262626] rounded px-4 py-2 text-sm text-[#d0d0d0] placeholder-[#606060] focus:outline-none focus:ring-2 focus:ring-[#444]"
+                                value={otherBudget}
+                                onChange={(e) => setOtherBudget(e.target.value)}
+                                required={budget === "Other"}
+                            />
+                        )}
+                    </div>
 
                     <select
                         className="w-full bg-[#262626] rounded px-4 py-2 text-sm text-[#d0d0d0] placeholder-[#606060] focus:outline-none focus:ring-2 focus:ring-[#444]"
                         value={purchaseTimeline}
                         onChange={(e) => setPurchaseTimeline(e.target.value)}
-                        required
                     >
                         <option value="">Purchase Timeline</option>
                         <option value="Immediately">Immediately</option>
@@ -143,7 +181,7 @@ export default function Inquiry({ onClose }: InquiryProps) {
 
                     <input
                         type="tel"
-                        placeholder="Enter Phone Number"
+                        placeholder="Enter Phone Number *"
                         className="w-full bg-[#262626] rounded px-4 py-2 text-sm text-[#d0d0d0] placeholder-[#606060] focus:outline-none focus:ring-2 focus:ring-[#444]"
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}
@@ -156,7 +194,6 @@ export default function Inquiry({ onClose }: InquiryProps) {
                         className="w-full bg-[#262626] rounded px-4 py-2 text-sm text-[#d0d0d0] placeholder-[#606060] focus:outline-none focus:ring-2 focus:ring-[#444]"
                         value={preferredArea}
                         onChange={(e) => setPreferredArea(e.target.value)}
-                        required
                     />
 
                     <input
@@ -165,7 +202,6 @@ export default function Inquiry({ onClose }: InquiryProps) {
                         className="w-full bg-[#262626] rounded px-4 py-2 text-sm text-[#d0d0d0] placeholder-[#606060] focus:outline-none focus:ring-2 focus:ring-[#444]"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        required
                     />
 
                     <button
