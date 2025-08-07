@@ -504,7 +504,9 @@ export default function ListingDetailsPage() {
             <button
               onClick={() => {
                 const gmapsUrl = `https://www.google.com/maps/search/?api=1&query=${listing.latitude},${listing.longitude}`;
-                window.open(gmapsUrl, "_blank");
+                if (typeof window !== 'undefined') {
+                  window.open(gmapsUrl, "_blank");
+                }
               }}
               className="bg-[#157cfb] text-white px-6 py-2 rounded mt-6 font-sans w-full"
             >
