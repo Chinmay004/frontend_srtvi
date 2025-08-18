@@ -30,12 +30,23 @@ export default function HomesForSalePage() {
                     </div>
 
                     {/* Service Card */}
-                    <div className="relative group bg-[#121212] p-8 rounded-2xl border border-[#262626] hover:border-[#e0b973] transition-all duration-300 hover:shadow-2xl hover:shadow-[#e0b973]/10 max-w-2xl mx-auto">
+                    <div className="relative group bg-[#121212] p-8 rounded-2xl border border-[#262626] hover:border-[#e0b973] transition-all duration-300 hover:shadow-2xl hover:shadow-[#e0b973]/10 max-w-2xl mx-auto overflow-hidden">
+                        {/* Background Image with Low Opacity */}
+                        <div
+                            className="absolute inset-0 bg-cover bg-center opacity-10 group-hover:opacity-15 transition-opacity duration-300 rounded-2xl"
+                            style={{
+                                backgroundImage: 'url(/serviceimage/HomeforSale.png)',
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                                backgroundRepeat: 'no-repeat'
+                            }}
+                        ></div>
+
                         {/* Gradient overlay on hover */}
                         <div className={`absolute inset-0 bg-gradient-to-br ${serviceData.gradient} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-300`}></div>
 
-                        <div className="relative z-10">
-                            <div className="w-16 h-16 bg-gradient-to-br from-[#2a2a2a] to-[#1a1a1a] flex items-center justify-center rounded-xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                        <div className="relative z-10 text-center">
+                            <div className="w-16 h-16 bg-gradient-to-br from-[#2a2a2a] to-[#1a1a1a] flex items-center justify-center rounded-xl mb-6 group-hover:scale-110 transition-transform duration-300 mx-auto">
                                 <Image src={serviceData.icon} alt={serviceData.title} width={32} height={32} className="group-hover:scale-110 transition-transform duration-300" />
                             </div>
 

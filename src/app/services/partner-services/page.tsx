@@ -10,20 +10,23 @@ export default function PartnerServicesPage() {
         {
             icon: "/services/Build.png",
             title: "Property Management",
-            desc: "Comprehensive property management solutions tailored to maximize your investment returns. Our expert team handles tenant screening, rent collection, maintenance coordination, and property inspections. We ensure your property is well-maintained, occupied by quality tenants, and generating optimal rental income. From single properties to large portfolios, we provide personalized management services with transparent reporting and 24/7 support.",
-            gradient: "from-blue-500 to-cyan-600"
+            desc: "Comprehensive property management solutions tailored to maximize your investment returns includes tenant screening, rent collection, maintenance, and inspections, ensuring your property stays well-kept, profitable, and in good hands—backed by transparent reporting and 24/7 support.",
+            gradient: "from-blue-500 to-cyan-600",
+            bgImage: "/serviceimage/PropertyManagement.png"
         },
         {
             icon: "/services/hand.png",
             title: "Mortgage Services",
-            desc: "Expert mortgage advisory and financing solutions to help you secure the best possible terms for your property purchase. Our experienced mortgage specialists work with leading banks and financial institutions to find competitive rates and flexible payment plans. We guide you through the entire mortgage process, from pre-approval to closing, ensuring you understand all terms and conditions. Whether you're a first-time buyer or an experienced investor, we help you navigate complex financing options and secure the most favorable mortgage terms for your dream property.",
-            gradient: "from-green-500 to-emerald-600"
+            desc: "Expert advice and financing solutions to secure the best terms for your property. We work with top banks to find competitive rates, guide you from pre-approval to closing, and simplify the process for first-time buyers and seasoned investors alike.",
+            gradient: "from-green-500 to-emerald-600",
+            bgImage: "/serviceimage/MortgageService.png"
         },
         {
             icon: "/services/money.png",
             title: "Home Valuation",
-            desc: "Professional property valuation services providing accurate market assessments for residential and commercial properties. Our certified valuers use advanced market analysis tools and comprehensive data to deliver precise property valuations. Whether you're buying, selling, refinancing, or need insurance purposes, our detailed valuation reports include market trends, comparable sales analysis, and future value projections. Get expert insights into your property's current market value and potential appreciation with our thorough evaluation process.",
-            gradient: "from-purple-500 to-pink-600"
+            desc: "Accurate market assessments for residential and commercial properties. Our certified experts use advanced analysis and data to deliver precise valuations for buying, selling, refinancing, or insurance—complete with market trends, comparisons, and future projections.",
+            gradient: "from-purple-500 to-pink-600",
+            bgImage: "/serviceimage/HomeValuation.png"
         }
     ];
 
@@ -32,9 +35,21 @@ export default function PartnerServicesPage() {
             <Navbar />
 
             {/* Header Section */}
-            <section className="bg-gradient-to-r from-[#1a1a1a] via-black to-[#1a1a1a] text-white py-20 px-6 sm:px-10 lg:px-24">
-                <div className="max-w-7xl mx-auto">
+            <section className="relative bg-gradient-to-r from-[#1a1a1a] via-black to-[#1a1a1a] text-white py-20 px-6 sm:px-10 lg:px-24 overflow-hidden">
+                {/* Background Image */}
+                {/* <div
+                    className="absolute inset-0 bg-cover bg-center opacity-5"
+                    style={{
+                        backgroundImage: 'url(/serviceimage/PartnerServices.png)',
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat'
+                    }}
+                ></div> */}
+
+                <div className="max-w-7xl mx-auto relative z-10">
                     <div className="text-center mb-16">
+
                         <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight mb-4">
                             Partner Services
                         </h1>
@@ -48,13 +63,24 @@ export default function PartnerServicesPage() {
                         {partnerServices.map((service) => (
                             <div
                                 key={service.title}
-                                className="relative group bg-[#121212] p-8 rounded-2xl border border-[#262626] hover:border-[#e0b973] transition-all duration-300 hover:shadow-2xl hover:shadow-[#e0b973]/10"
+                                className="relative group bg-[#121212] p-8 rounded-2xl border border-[#262626] hover:border-[#e0b973] transition-all duration-300 hover:shadow-2xl hover:shadow-[#e0b973]/10 overflow-hidden"
                             >
+                                {/* Background Image with Low Opacity */}
+                                <div
+                                    className="absolute inset-0 bg-cover bg-center opacity-10 group-hover:opacity-15 transition-opacity duration-300 rounded-2xl"
+                                    style={{
+                                        backgroundImage: `url(${service.bgImage})`,
+                                        backgroundSize: 'cover',
+                                        backgroundPosition: 'center',
+                                        backgroundRepeat: 'no-repeat'
+                                    }}
+                                ></div>
+
                                 {/* Gradient overlay on hover */}
                                 <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-300`}></div>
 
-                                <div className="relative z-10">
-                                    <div className="w-16 h-16 bg-gradient-to-br from-[#2a2a2a] to-[#1a1a1a] flex items-center justify-center rounded-xl mb-6 group-hover:scale-110 transition-transform duration-300">
+                                <div className="relative z-10 text-center">
+                                    <div className="w-16 h-16 bg-gradient-to-br from-[#2a2a2a] to-[#1a1a1a] flex items-center justify-center rounded-xl mb-6 group-hover:scale-110 transition-transform duration-300 mx-auto">
                                         <Image src={service.icon} alt={service.title} width={32} height={32} className="group-hover:scale-110 transition-transform duration-300" />
                                     </div>
 
