@@ -17,6 +17,8 @@ export const metadata: Metadata = {
   description: "Find premium real estate properties in Dubai with Sartawi. Trust. Resilience. Ambition.",
   icons: {
     icon: "/logo-sartawi.svg",
+    shortcut: "/logo-sartawi.svg",
+    apple: "/logo-sartawi.svg",
   },
 };
 
@@ -29,6 +31,13 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="/logo-sartawi.svg" />
+        <link rel="shortcut icon" href="/logo-sartawi.svg" />
+        <link rel="apple-touch-icon" href="/logo-sartawi.svg" />
+
+        {/* Vercel Project Logo */}
+        <link rel="icon" type="image/svg+xml" href="/logo-sartawi.svg" />
+        <meta property="og:image" content="/logo-sartawi.svg" />
+        <meta name="twitter:image" content="/logo-sartawi.svg" />
       </head>
       <body className={`${urbanist.variable} antialiased`}>
         {children}
