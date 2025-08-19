@@ -34,40 +34,117 @@ export default function PartnerServicesPage() {
         <div className="bg-black text-white min-h-screen">
             <Navbar />
 
-            {/* Header Section */}
-            <section className="relative bg-gradient-to-r from-[#1a1a1a] via-black to-[#1a1a1a] text-white py-20 px-6 sm:px-10 lg:px-24 overflow-hidden">
-                {/* Background Image */}
-                {/* <div
-                    className="absolute inset-0 bg-cover bg-center opacity-5"
-                    style={{
-                        backgroundImage: 'url(/serviceimage/PartnerServices.png)',
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        backgroundRepeat: 'no-repeat'
-                    }}
-                ></div> */}
+            {/* Hero Section */}
+            <section className="relative bg-gradient-to-br from-[#0a0a0a] via-black to-[#1a1a1a] text-white py-24 px-6 sm:px-10 lg:px-24 overflow-hidden">
+                {/* Background Pattern */}
+                <div className="absolute inset-0 opacity-20">
+                    <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-yellow-500 to-orange-600 rounded-full blur-3xl"></div>
+                    <div className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-r from-orange-500 to-red-600 rounded-full blur-3xl"></div>
+                </div>
 
-                <div className="max-w-7xl mx-auto relative z-10">
+                <div className="max-w-6xl mx-auto relative z-10">
+                    {/* Main Content */}
+                    <div className="grid lg:grid-cols-2 gap-12 items-center">
+                        {/* Left Column - Text Content */}
+                        <div className="space-y-8">
+                            <div className="inline-flex items-center space-x-3 bg-gradient-to-r from-yellow-500 to-orange-600 bg-clip-text text-transparent">
+                                <div className="w-8 h-8 bg-gradient-to-r from-yellow-500 to-orange-600 rounded-lg flex items-center justify-center">
+                                    <Image src="/services/money.png" alt="Partner Icon" width={20} height={20} className="filter brightness-0" />
+                                </div>
+                                <span className="text-sm font-semibold tracking-wider uppercase">Premium Partners</span>
+                            </div>
+
+                            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight">
+                                Expert
+                                <span className="block bg-gradient-to-r from-yellow-500 to-orange-600 bg-clip-text text-transparent">
+                                    Partner Services
+                                </span>
+                            </h1>
+
+                            <p className="text-xl text-gray-300 leading-relaxed max-w-lg">
+                                Access specialized real estate services through our trusted partner network. From property management and maintenance to legal services and financing solutions, we connect you with industry experts.
+                            </p>
+
+                            {/* Stats */}
+                            <div className="grid grid-cols-3 gap-6 pt-6">
+                                <div className="text-center">
+                                    <div className="text-2xl font-bold text-yellow-500">50+</div>
+                                    <div className="text-sm text-gray-400">Expert Partners</div>
+                                </div>
+                                <div className="text-center">
+                                    <div className="text-2xl font-bold text-yellow-500">15+</div>
+                                    <div className="text-sm text-gray-400">Service Categories</div>
+                                </div>
+                                <div className="text-center">
+                                    <div className="text-2xl font-bold text-yellow-500">24/7</div>
+                                    <div className="text-sm text-gray-400">Support Available</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Right Column - Service Preview */}
+                        <div className="relative group">
+                            <div className="relative bg-gradient-to-br from-[#111111] to-[#1a1a1a] p-8 rounded-3xl border border-[#262626] hover:border-yellow-500 transition-all duration-500 hover:shadow-2xl hover:shadow-yellow-500/20 overflow-hidden">
+                                {/* Background Image with Enhanced Effects */}
+                                <div
+                                    className="absolute inset-0 bg-cover bg-center opacity-30 group-hover:opacity-20 transition-all duration-500 rounded-3xl scale-105 group-hover:scale-110"
+                                    style={{
+                                        backgroundImage: 'url(/serviceimage/PartnerServices.png)',
+                                        backgroundSize: 'cover',
+                                        backgroundPosition: 'center',
+                                        backgroundRepeat: 'no-repeat'
+                                    }}
+                                ></div>
+
+                                {/* Enhanced Gradient Overlay */}
+                                <div className="absolute inset-0 bg-gradient-to-br from-yellow-500 to-orange-600 opacity-0 group-hover:opacity-10 rounded-3xl transition-all duration-500"></div>
+
+                                {/* Content */}
+                                <div className="relative z-10 text-center space-y-6">
+                                    <div className="w-20 h-20 bg-gradient-to-br from-yellow-500 to-orange-600 flex items-center justify-center rounded-2xl mb-6 group-hover:scale-110 transition-all duration-500 mx-auto shadow-lg shadow-yellow-500/25">
+                                        <Image src="/services/money.png" alt="Partner Icon" width={40} height={40} className="filter brightness-0" />
+                                    </div>
+
+                                    <div className="space-y-4">
+                                        <h3 className="text-2xl font-bold text-white group-hover:text-yellow-500 transition-colors duration-300">
+                                            Trusted Network
+                                        </h3>
+                                        <p className="text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
+                                            Curated network of industry experts providing specialized services for all your real estate needs
+                                        </p>
+                                    </div>
+
+                                    {/* Enhanced Decorative Elements */}
+                                    <div className="absolute top-6 right-6 w-3 h-3 bg-gradient-to-r from-yellow-500 to-orange-600 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 animate-pulse"></div>
+                                    <div className="absolute bottom-6 left-6 w-2 h-2 bg-gradient-to-r from-orange-500 to-red-600 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200"></div>
+                                </div>
+                            </div>
+
+                            {/* Floating Elements */}
+                            <div className="absolute -top-4 -right-4 w-8 h-8 bg-gradient-to-r from-yellow-500 to-orange-600 rounded-full opacity-20 animate-bounce"></div>
+                            <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-gradient-to-r from-orange-500 to-red-600 rounded-full opacity-20 animate-bounce delay-1000"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Partner Services Section */}
+            <section className="bg-[#0f0f0f] text-white py-20 px-6 sm:px-10 lg:px-24">
+                <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-16">
-
-                        <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight mb-4">
-                            Partner Services
-                        </h1>
-                        <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-                            Access specialized real estate services through our trusted partner network. From property management and maintenance to legal services and financing solutions, we connect you with industry experts.
-                        </p>
+                        <h2 className="text-4xl font-bold mb-4">Our Premium Partner Services</h2>
+                        <p className="text-gray-400 text-lg">Comprehensive solutions from trusted industry experts</p>
                     </div>
 
-                    {/* Partner Services Cards */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {partnerServices.map((service) => (
                             <div
                                 key={service.title}
-                                className="relative group bg-[#121212] p-8 rounded-2xl border border-[#262626] hover:border-[#e0b973] transition-all duration-300 hover:shadow-2xl hover:shadow-[#e0b973]/10 overflow-hidden"
+                                className="relative group bg-[#111111] p-8 rounded-2xl border border-[#262626] hover:border-yellow-500 transition-all duration-300 hover:shadow-xl hover:shadow-yellow-500/10 overflow-hidden"
                             >
-                                {/* Background Image with Low Opacity */}
+                                {/* Background Image with Enhanced Effects */}
                                 <div
-                                    className="absolute inset-0 bg-cover bg-center opacity-10 group-hover:opacity-15 transition-opacity duration-300 rounded-2xl"
+                                    className="absolute inset-0 bg-cover bg-center opacity-20 group-hover:opacity-15 transition-all duration-300 rounded-2xl scale-105 group-hover:scale-110"
                                     style={{
                                         backgroundImage: `url(${service.bgImage})`,
                                         backgroundSize: 'cover',
@@ -76,8 +153,8 @@ export default function PartnerServicesPage() {
                                     }}
                                 ></div>
 
-                                {/* Gradient overlay on hover */}
-                                <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-5 rounded-2xl transition-opacity duration-300`}></div>
+                                {/* Enhanced Gradient Overlay */}
+                                <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-10 rounded-2xl transition-all duration-300`}></div>
 
                                 <div className="relative z-10 text-center">
                                     <div className="w-16 h-16 bg-gradient-to-br from-[#2a2a2a] to-[#1a1a1a] flex items-center justify-center rounded-xl mb-6 group-hover:scale-110 transition-transform duration-300 mx-auto">
@@ -85,7 +162,7 @@ export default function PartnerServicesPage() {
                                     </div>
 
                                     <div className="space-y-4">
-                                        <h3 className="text-xl font-bold text-white group-hover:text-[#e0b973] transition-colors duration-300">
+                                        <h3 className="text-xl font-bold text-white group-hover:text-yellow-500 transition-colors duration-300">
                                             {service.title}
                                         </h3>
                                         <p className="text-sm text-gray-300 leading-relaxed group-hover:text-gray-200 transition-colors duration-300">
@@ -93,8 +170,8 @@ export default function PartnerServicesPage() {
                                         </p>
                                     </div>
 
-                                    {/* Decorative element */}
-                                    <div className="absolute top-4 right-4 w-2 h-2 bg-[#e0b973] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                    {/* Enhanced Decorative Elements */}
+                                    <div className="absolute top-4 right-4 w-3 h-3 bg-gradient-to-r from-yellow-500 to-orange-600 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 animate-pulse"></div>
                                 </div>
                             </div>
                         ))}
@@ -103,14 +180,14 @@ export default function PartnerServicesPage() {
             </section>
 
             {/* Inquiry Form Section */}
-            <section className="bg-[#0f0f0f] text-white py-16 px-6 sm:px-10 lg:px-24">
+            <section className="bg-gradient-to-br from-[#0a0a0a] to-[#1a1a1a] text-white py-20 px-6 sm:px-10 lg:px-24">
                 <div className="max-w-4xl mx-auto">
                     <div className="text-center mb-12">
-                        <h2 className="text-3xl font-semibold mb-4">Get Expert Partner Services</h2>
-                        <p className="text-gray-300">Fill out the form below and our team will connect you with the right partner services for your needs.</p>
+                        <h2 className="text-4xl font-bold mb-4">Ready to Access Expert Partner Services?</h2>
+                        <p className="text-gray-300 text-lg">Get in touch with our team and connect with the right experts today</p>
                     </div>
 
-                    <div className="bg-[#111111] rounded-2xl border border-[#262626] p-8">
+                    <div className="bg-gradient-to-br from-[#111111] to-[#1a1a1a] rounded-3xl border border-[#262626] p-8 shadow-2xl shadow-black/50">
                         <Inquiry />
                     </div>
                 </div>
