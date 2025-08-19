@@ -20,6 +20,18 @@ export const metadata: Metadata = {
     shortcut: "/logo-sartawi.svg",
     apple: "/logo-sartawi.svg",
   },
+  openGraph: {
+    title: "Sartawi Properties",
+    description: "Discover Your Dream Property",
+    images: ["/logo-sartawi.svg"],
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Sartawi Properties",
+    description: "Discover Your Dream Property",
+    images: ["/logo-sartawi.svg"],
+  },
 };
 
 export default function RootLayout({
@@ -34,10 +46,20 @@ export default function RootLayout({
         <link rel="shortcut icon" href="/logo-sartawi.svg" />
         <link rel="apple-touch-icon" href="/logo-sartawi.svg" />
 
-        {/* Vercel Project Logo */}
+        {/* Vercel Project Logo - Multiple formats */}
         <link rel="icon" type="image/svg+xml" href="/logo-sartawi.svg" />
-        <meta property="og:image" content="/logo-sartawi.svg" />
-        <meta name="twitter:image" content="/logo-sartawi.svg" />
+        <link rel="icon" type="image/png" href="/logo-sartawi.svg" />
+
+        {/* Force Vercel to recognize the logo */}
+        <meta property="og:image" content="https://www.sartawiproperties.com/logo-sartawi.svg" />
+        <meta property="og:image:type" content="image/svg+xml" />
+        <meta property="og:image:width" content="176" />
+        <meta property="og:image:height" content="170" />
+        <meta name="twitter:image" content="https://www.sartawiproperties.com/logo-sartawi.svg" />
+
+        {/* Additional Vercel-specific meta */}
+        <meta name="application-name" content="Sartawi Properties" />
+        <meta name="msapplication-TileImage" content="/logo-sartawi.svg" />
       </head>
       <body className={`${urbanist.variable} antialiased`}>
         {children}
