@@ -17,6 +17,9 @@ const urbanist = Urbanist({
 export const metadata: Metadata = {
   title: "Sartawi Properties - Discover Your Dream Property",
   description: "Find premium real estate properties in Dubai with Sartawi.",
+  icons: {
+    icon: "/logo-sartawi.svg",
+  },
 };
 
 export default function RootLayout({
