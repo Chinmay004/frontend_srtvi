@@ -1,0 +1,21 @@
+{
+    "name": "Sartawi Properties",
+    "short_name": "Sartawi",
+    "description": "Discover Your Dream Property with Sartawi Properties - Trust. Resilience. Ambition.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#000000",
+    "theme_color": "#e0b973",
+    "icons": [
+        {
+            "src": "/logo-sartawi.png",
+            "sizes": "any",
+            "type": "image/png"
+        },
+        {
+            "src": "/logo-sartawi.svg",
+            "sizes": "any",
+            "type": "image/svg+xml"
+        }
+    ]
+}
