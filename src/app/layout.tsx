@@ -34,11 +34,9 @@ export const metadata: Metadata = {
     description: "Find premium real estate properties in Dubai with Sartawi. Trust. Resilience. Ambition.",
   },
   icons: {
-    icon: [
-      { url: "/logo-sartawi.png", sizes: "any" },
-      { url: "/logo-sartawi.svg", type: "image/svg+xml" },
-    ],
+    icon: "/logo-sartawi.png",
     shortcut: "/logo-sartawi.png",
+    apple: "/logo-sartawi.png",
   },
 };
 
@@ -50,13 +48,23 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Favicon links using your existing logo files */}
-        <link rel="icon" href="/logo-sartawi.png" sizes="any" />
-        <link rel="icon" type="image/svg+xml" href="/logo-sartawi.svg" />
+        {/* Force favicon update with multiple declarations */}
+        <link rel="icon" href="/logo-sartawi.png" />
+        <link rel="icon" type="image/png" href="/logo-sartawi.png" />
         <link rel="shortcut icon" href="/logo-sartawi.png" />
+        <link rel="apple-touch-icon" href="/logo-sartawi.png" />
+        <link rel="apple-touch-icon-precomposed" href="/logo-sartawi.png" />
+
+        {/* Alternative SVG version */}
+        <link rel="icon" type="image/svg+xml" href="/logo-sartawi.svg" />
 
         {/* Preload favicon for faster loading */}
         <link rel="preload" href="/logo-sartawi.png" as="image" />
+
+        {/* Force cache busting */}
+        <meta httpEquiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta httpEquiv="Pragma" content="no-cache" />
+        <meta httpEquiv="Expires" content="0" />
       </head>
       <body className={`${urbanist.variable} antialiased`}>
         {children}
