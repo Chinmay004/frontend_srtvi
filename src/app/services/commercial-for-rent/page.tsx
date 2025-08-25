@@ -112,7 +112,7 @@ export default function CommercialForRentPage() {
             </section>
 
             {/* Features Section */}
-            <section className="bg-[#0f0f0f] text-white py-20 px-6 sm:px-10 lg:px-24">
+            {/* <section className="bg-[#0f0f0f] text-white py-20 px-6 sm:px-10 lg:px-24">
                 <div className="max-w-6xl mx-auto">
                     <div className="text-center mb-16">
                         <h2 className="text-4xl font-bold mb-4">Why Choose Our Commercial Spaces?</h2>
@@ -145,7 +145,7 @@ export default function CommercialForRentPage() {
                         ))}
                     </div>
                 </div>
-            </section>
+            </section> */}
 
             {/* Inquiry Form Section */}
             <section className="bg-gradient-to-br from-[#0a0a0a] to-[#1a1a1a] text-white py-20 px-6 sm:px-10 lg:px-24">

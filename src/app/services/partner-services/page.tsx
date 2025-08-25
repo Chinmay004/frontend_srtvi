@@ -75,10 +75,10 @@ export default function PartnerServicesPage() {
                                     <div className="text-2xl font-bold text-yellow-500">15+</div>
                                     <div className="text-sm text-gray-400">Service Categories</div>
                                 </div>
-                                <div className="text-center">
+                                {/* <div className="text-center">
                                     <div className="text-2xl font-bold text-yellow-500">24/7</div>
                                     <div className="text-sm text-gray-400">Support Available</div>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
 

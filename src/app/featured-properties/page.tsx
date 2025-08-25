@@ -49,6 +49,7 @@ export default function SecondaryPropertiesPage() {
     const [page, setPage] = useState(1);
     const [totalCount, setTotalCount] = useState(0);
     const [showMapPopup, setShowMapPopup] = useState(false);
+    const [listingType, setListingType] = useState<'SELL' | 'RENT'>();
     const listingsPerPage = 12;
 
     useEffect(() => {
@@ -64,6 +65,7 @@ export default function SecondaryPropertiesPage() {
                         limit: listingsPerPage,
                         search,
                         marketType: "secondary",
+                        listingType,
                     }),
                 });
 
@@ -91,7 +93,7 @@ export default function SecondaryPropertiesPage() {
         };
 
         fetchListings();
-    }, [page, search]);
+    }, [page, search, listingType]);
 
     const totalPages = Math.ceil(totalCount / listingsPerPage);
 
@@ -140,6 +142,33 @@ export default function SecondaryPropertiesPage() {
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
                         />
+                    </div>
+
+                    {/* Toggles Container */}
+                    <div className="w-full sm:w-auto">
+                        <div className="flex flex-row flex-wrap gap-3 justify-between sm:justify-start w-full">
+
+                            {/* Buy / Rent Toggle */}
+                            <div className="flex items-center bg-[#161616] rounded-full p-[2px] flex-1 min-w-[48%] sm:min-w-fit sm:w-auto">
+                                <button
+                                    className={`${listingType === "SELL" ? "bg-white text-black font-semibold" : "text-gray-300 font-light"} text-xs md:text-sm px-4 py-1.5 rounded-full transition-all w-1/2 border border-gray-500`}
+                                    onClick={() =>
+                                        setListingType(prev => (prev === "SELL" ? undefined : "SELL"))
+                                    }
+                                >
+                                    Buy
+                                </button>
+                                <button
+                                    className={`${listingType === "RENT" ? "bg-white text-black font-semibold" : "text-gray-300 font-light"} text-xs md:text-sm px-4 py-1.5 rounded-full transition-all w-1/2 border border-gray-500`}
+                                    onClick={() =>
+                                        setListingType(prev => (prev === "RENT" ? undefined : "RENT"))
+                                    }
+                                >
+                                    Rent
+                                </button>
+                            </div>
+
+                        </div>
                     </div>
 
                     {/* Show on Map Button */}
