@@ -28,15 +28,16 @@ const IMAGE_BASE_URL = "https://oss.pixxicrm.com";
 // ];
 
 const logos = [
-  { src: "/devv/Ellingto.webp", name: "Ellington" },
-  { src: "/devv/Deyaar.webp", name: "Deyaar" },
-  { src: "/devv/Omniyat.webp", name: "Omniyat" },
-  { src: "/devv/Arada.webp", name: "Arada" },
-  { src: "/devv/Damac.webp", name: "Damac" },
-  { src: "/devv/BInghatti.webp", name: "Binghatti" },
-  { src: "/devv/Meraas.webp", name: "Meraas" },
-  { src: "/devv/Nakheel.webp", name: "Nakheel" },
-  { src: "/devv/Azizi.webp", name: "Azizi" },
+  { src: "/devv/emaar.webp", name: "Emaar", size: "small" },
+  { src: "/devv/Ellingto.webp", name: "Ellington", size: "normal" },
+  { src: "/devv/Deyaar.webp", name: "Deyaar", size: "normal" },
+  { src: "/devv/Omniyat.webp", name: "Omniyat", size: "normal" },
+  { src: "/devv/Arada.webp", name: "Arada", size: "normal" },
+  { src: "/devv/Damac.webp", name: "Damac", size: "normal" },
+  { src: "/devv/BInghatti.webp", name: "Binghatti", size: "normal" },
+  { src: "/devv/Meraas.webp", name: "Meraas", size: "normal" },
+  { src: "/devv/Nakheel.webp", name: "Nakheel", size: "normal" },
+  { src: "/devv/Azizi.webp", name: "Azizi", size: "normal" },
 ];
 
 interface Listing {
@@ -197,17 +198,24 @@ export default function Home() {
             {[...logos, ...logos].map((item, idx) => (
               <div
                 key={`${item.src}-${idx}`}
-                className="relative h-72 w-72 cursor-pointer"
+                className="relative cursor-pointer h-72 w-72 flex items-center justify-center"
                 onClick={() => {
                   router.push(`/listings?search=${encodeURIComponent(item.name)}`);
                 }}
               >
-                <Image
-                  src={item.src}
-                  alt={item.name}
-                  fill
-                  className="object-contain"
-                />
+                <div
+                  className={`relative ${item.size === "small"
+                    ? "h-44 w-44" // Smaller size for Emaar (192x192)
+                    : "h-72 w-72"  // Normal size for others (288x288)
+                    }`}
+                >
+                  <Image
+                    src={item.src}
+                    alt={item.name}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
               </div>
             ))}
           </div>

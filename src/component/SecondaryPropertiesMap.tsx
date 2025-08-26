@@ -211,7 +211,7 @@ export default function SecondaryPropertiesMap() {
         const fetchSecondaryProperties = async () => {
             try {
                 setLoading(true);
-                const res = await fetch(`https://sartawi-properties-backend.onrender.com/api/v1/listings/pixxi`, {
+                const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/v1/listings/pixxi`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
