@@ -49,7 +49,7 @@ export default function HomesForRentPage() {
                             </p>
 
                             {/* Stats */}
-                            <div className="grid grid-cols-3 gap-6 pt-6">
+                            {/* <div className="grid grid-cols-3 gap-6 pt-6">
                                 <div className="text-center">
                                     <div className="text-2xl font-bold text-green-500">300+</div>
                                     <div className="text-sm text-gray-400">Rental Properties</div>
@@ -62,7 +62,7 @@ export default function HomesForRentPage() {
                                     <div className="text-2xl font-bold text-green-500">Flexible</div>
                                     <div className="text-sm text-gray-400">Lease Terms</div>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
 
                         {/* Right Column - Service Card */}

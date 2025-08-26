@@ -49,7 +49,7 @@ export default function HomesForSalePage() {
                             </p>
 
                             {/* Stats */}
-                            <div className="grid grid-cols-3 gap-6 pt-6">
+                            {/* <div className="grid grid-cols-3 gap-6 pt-6">
                                 <div className="text-center">
                                     <div className="text-2xl font-bold text-[#e0b973]">500+</div>
                                     <div className="text-sm text-gray-400">Properties</div>
@@ -62,7 +62,7 @@ export default function HomesForSalePage() {
                                     <div className="text-2xl font-bold text-[#e0b973]">100%</div>
                                     <div className="text-sm text-gray-400">Satisfaction</div>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
 
                         {/* Right Column - Service Card */}
