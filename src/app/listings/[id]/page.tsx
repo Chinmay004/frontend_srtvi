@@ -556,7 +556,7 @@ export default function ListingDetailsPage() {
                     </div>
                     <div>
                       <h3 className="text-xl font-bold text-white">Nearby Amenities</h3>
-                      <p className="text-sm text-gray-400">Discover what's around</p>
+                      <p className="text-sm text-gray-400">Discover what&apos;s around</p>
                     </div>
                   </div>
 
