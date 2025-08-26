@@ -427,7 +427,7 @@ export default function SecondaryPropertiesMap() {
                     zoom={11}
                     style={{ height: "100%", width: "100%" }}
                     className="rounded-lg"
-                    scrollWheelZoom={true}
+                    scrollWheelZoom={false}
                 >
                     <TileLayer
                         attribution='&copy; <a href="https://www.maptiler.com/">MapTiler</a>'
