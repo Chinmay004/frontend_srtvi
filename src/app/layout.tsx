@@ -51,11 +51,11 @@ export default function RootLayout({
         <link rel="icon" type="image/png" href="/logo-sartawi.svg" />
 
         {/* Force Vercel to recognize the logo */}
-        <meta property="og:image" content="https://www.sartawiproperties.com/logo-sartawi.svg" />
+        <meta property="og:image" content="https://www.sartawiproperties.com/srtvi-blck-logo.svg" />
         <meta property="og:image:type" content="image/svg+xml" />
         <meta property="og:image:width" content="176" />
         <meta property="og:image:height" content="170" />
-        <meta name="twitter:image" content="https://www.sartawiproperties.com/logo-sartawi.svg" />
+        <meta name="twitter:image" content="https://www.sartawiproperties.com/srtvi-blck-logo.svg" />
 
         {/* Additional Vercel-specific meta */}
         <meta name="application-name" content="Sartawi Properties" />
