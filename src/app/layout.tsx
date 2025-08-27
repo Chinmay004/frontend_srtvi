@@ -23,14 +23,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Sartawi Properties",
     description: "Discover Your Dream Property",
-    images: ["/logo-sartawi.svg"],
+    images: ["/srtvi-blck-logo.svg"],
     type: "website",
   },
   twitter: {
     card: "summary",
     title: "Sartawi Properties",
     description: "Discover Your Dream Property",
-    images: ["/logo-sartawi.svg"],
+    images: ["/srtvi-blck-logo.svg"],
   },
 };
 
