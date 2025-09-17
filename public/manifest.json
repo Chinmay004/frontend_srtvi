@@ -1,0 +1,37 @@
+{
+    "name": "Sartawi Properties",
+    "short_name": "Sartawi",
+    "description": "Find premium real estate properties in Dubai with Sartawi. Trust. Resilience. Ambition.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/logo-sartawi.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/logo-sartawi.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/logo-sartawi.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any"
+        }
+    ],
+    "categories": [
+        "business",
+        "lifestyle",
+        "shopping"
+    ],
+    "lang": "en",
+    "dir": "ltr"
+}
