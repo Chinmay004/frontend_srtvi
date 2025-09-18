@@ -57,16 +57,16 @@ export const metadata: Metadata = {
     images: [
       {
         url: "https://www.sartawiproperties.com/srtvi-blck-logo.svg",
-        width: 176,
-        height: 170,
-        alt: "Sartawi Properties Logo",
+        width: 281,
+        height: 239,
+        alt: "Sartawi Properties - Black Logo",
         type: "image/svg+xml",
       },
       {
-        url: "https://www.sartawiproperties.com/logo-sartawi.png",
-        width: 512,
-        height: 512,
-        alt: "Sartawi Properties Logo",
+        url: "https://www.sartawiproperties.com/srtvi-blck-logo.png",
+        width: 281,
+        height: 239,
+        alt: "Sartawi Properties - Black Logo",
         type: "image/png",
       },
     ],
@@ -79,7 +79,7 @@ export const metadata: Metadata = {
     description: "Find premium real estate properties in Dubai with Sartawi. Trust. Resilience. Ambition.",
     images: [
       "https://www.sartawiproperties.com/srtvi-blck-logo.svg",
-      "https://www.sartawiproperties.com/logo-sartawi.png",
+      "https://www.sartawiproperties.com/srtvi-blck-logo.png",
     ],
     creator: "@sartawiproperties",
     site: "@sartawiproperties",
@@ -132,6 +132,15 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Sartawi Properties" />
 
+        {/* Additional meta tags for Google and social media */}
+        <meta property="og:image" content="https://www.sartawiproperties.com/srtvi-blck-logo.svg" />
+        <meta property="og:image:type" content="image/svg+xml" />
+        <meta property="og:image:width" content="281" />
+        <meta property="og:image:height" content="239" />
+        <meta property="og:image:alt" content="Sartawi Properties - Black Logo" />
+        <meta name="twitter:image" content="https://www.sartawiproperties.com/srtvi-blck-logo.svg" />
+        <meta name="twitter:image:alt" content="Sartawi Properties - Black Logo" />
+
         {/* Structured Data for better Google recognition */}
         <script
           type="application/ld+json"
@@ -141,7 +150,8 @@ export default function RootLayout({
               "@type": "Organization",
               "name": "Sartawi Properties",
               "url": "https://www.sartawiproperties.com",
-              "logo": "https://www.sartawiproperties.com/logo-sartawi.svg",
+              "logo": "https://www.sartawiproperties.com/srtvi-blck-logo.svg",
+              "image": "https://www.sartawiproperties.com/srtvi-blck-logo.svg",
               "description": "Find premium real estate properties in Dubai with Sartawi. Trust. Resilience. Ambition.",
               "sameAs": [
                 "https://www.facebook.com/sartawiproperties",
